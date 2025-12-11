@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Drishtii Eyecare – Premium Vision for Premium People</title>
+  <link rel="stylesheet" href="styles.css" />
+  <!-- Google Fonts for premium typography -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <header class="header sticky">
+    <div class="container header-content">
+      <a href="index.html" class="logo">Drishtii Eyecare</a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="shop.html">Shop</a></li>
+          <li><a href="#featured">Featured</a></li>
+          <li><a href="#testimonials">Testimonials</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <a href="https://wa.me/+91XXXXXXXXXX" target="_blank" class="btn btn-primary whatsapp-btn">WhatsApp Now</a> <!-- Replace phone -->
+    </div>
+  </header>
+
+  <main>
+    <section class="hero-banner">
+      <div class="hero-text">
+        <h1>Drishtii Eyecare – Premium Vision for Premium People</h1>
+        <p>See Better. Look Better. Live Better.</p>
+        <a href="shop.html" class="btn btn-primary">Shop Now</a>
+        <a href="shop.html" class="btn btn-secondary">Buy 1 Get 1 Free Offer</a>
+      </div>
+      <div class="hero-sliders">
+        <div class="slider fade">
+          <img src="assets/banner1.jpg" alt="Premium Glasses 1" />
+        </div>
+        <div class="slider fade">
+          <img src="assets/banner2.jpg" alt="Premium Glasses 2" />
+        </div>
+        <div class="slider fade">
+          <img src="assets/banner3.jpg" alt="Premium Glasses 3" />
+        </div>
+      </div>
+    </section>
+
+    <section id="shop-categories" class="categories container">
+      <h2>Shop Categories</h2>
+      <div class="cat-grid">
+        <a href="shop.html?cat=men" class="cat-card">Men</a>
+        <a href="shop.html?cat=women" class="cat-card">Women</a>
+        <a href="shop.html?cat=kids" class="cat-card">Kids</a>
+        <a href="shop.html?cat=computer" class="cat-card">Computer Glasses</a>
+        <a href="shop.html?cat=sunglasses" class="cat-card">Sunglasses</a>
+      </div>
+    </section>
+
+    <section id="featured" class="featured-collections container">
+      <h2>Featured Collections</h2>
+      <div class="featured-grid">
+        <div class="product-card">
+          <img src="assets/product1.jpg" alt="Classic Rimless" />
+          <h3>Classic Rimless</h3>
+          <p>Starting at ₹1999</p>
+          <a href="shop.html" class="btn btn-secondary">Shop Now</a>
+        </div>
+        <div class="product-card">
+          <img src="assets/product2.jpg" alt="Stylish Sunglasses" />
+          <h3>Stylish Sunglasses</h3>
+          <p>Starting at ₹2999</p>
+          <a href="shop.html" class="btn btn-secondary">Shop Now</a>
+        </div>
+        <div class="product-card">
+          <img src="assets/product3.jpg" alt="Blue Cut Glasses" />
+          <h3>Blue Cut Glasses</h3>
+          <p>Starting at ₹2500</p>
+          <a href="shop.html" class="btn btn-secondary">Shop Now</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="offers" class="container offers-banner">
+      <p>🔥 <strong>Buy 1 Get 1 Free</strong> on select frames. Hurry! Limited time offer.</p>
+    </section>
+
+    <section id="testimonials" class="container testimonials">
+      <h2>What Our Customers Say</h2>
+      <div class="testimonial-carousel">
+        <div class="testimonial-slide">
+          <p>"Amazing service, the glasses fit perfectly!"</p>
+          <span>- Rina S.</span>
+        </div>
+        <div class="testimonial-slide">
+          <p>"Quick delivery and excellent customer care."</p>
+          <span>- Arjun M.</span>
+        </div>
+        <div class="testimonial-slide">
+          <p>"Great selection of stylish frames. Highly recommend!"</p>
+          <span>- Neha T.</span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="contact" class="footer container">
+    <div>
+      <h3>Contact Us</h3>
+      <p>Bethuadahari, West Bengal</p>
+      <p>Phone: +91-XXXXXXXXXX</p> <!-- Replace phone -->
+      <p>Email: info@drishtii-eyecare.com</p>
+    </div>
+    <div class="footer-socials">
+      <!-- Placeholder links -->
+      <a href="#" aria-label="Facebook" class="social-icon">FB</a>
+      <a href="#" aria-label="Instagram" class="social-icon">IG</a>
+      <a href="#" aria-label="Twitter" class="social-icon">TW</a>
+    </div>
+    <div>
+      <p>© 2025 Drishtii Eyecare. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Floating WhatsApp Button -->
+  <a href="https://wa.me/+91XXXXXXXXXX" target="_blank" class="floating-whatsapp" aria-label="Chat on WhatsApp">💬</a> <!-- Replace phone -->
+
+  <script src="scripts.js"></script>
+</body>
+</html>

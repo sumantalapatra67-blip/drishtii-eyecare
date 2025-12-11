@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Shop - Drishtii Eyecare</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+<header class="header sticky">
+  <div class="container header-content">
+    <a href="index.html" class="logo">Drishtii Eyecare</a>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="shop.html">Shop</a></li>
+        <li><a href="index.html#featured">Featured</a></li>
+        <li><a href="index.html#testimonials">Testimonials</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+    </nav>
+    <a href="https://wa.me/+91XXXXXXXXXX" target="_blank" class="btn btn-primary whatsapp-btn">WhatsApp Now</a> <!-- Replace phone -->
+  </div>
+</header>
+
+<main class="container shop-page">
+
+  <h1>Shop Our Premium Eyewear</h1>
+
+  <section class="filters">
+    <label for="filter-price">Price:</label>
+    <select id="filter-price">
+      <option value="all">All</option>
+      <option value="low">Under ₹2000</option>
+      <option value="med">₹2000 - ₹4000</option>
+      <option value="high">Over ₹4000</option>
+    </select>
+
+    <label for="filter-gender">Gender:</label>
+    <select id="filter-gender">
+      <option value="all">All</option>
+      <option value="men">Men</option>
+      <option value="women">Women</option>
+      <option value="kids">Kids</option>
+    </select>
+
+    <label for="filter-shape">Shape:</label>
+    <select id="filter-shape">
+      <option value="all">All</option>
+      <option value="round">Round</option>
+      <option value="square">Square</option>
+      <option value="oval">Oval</option>
+      <option value="cat-eye">Cat Eye</option>
+    </select>
+
+    <label for="filter-material">Material:</label>
+    <select id="filter-material">
+      <option value="all">All</option>
+      <option value="metal">Metal</option>
+      <option value="plastic">Plastic</option>
+      <option value="carbon">Carbon Fiber</option>
+    </select>
+  </section>
+
+  <section id="product-grid" class="product-grid">
+
+    <!-- Sample product cards -->
+    <div class="product-card" data-price="1500" data-gender="men" data-shape="square" data-material="metal">
+      <img src="assets/product1.jpg" alt="Classic Rimless" />
+      <h3>Classic Rimless</h3>
+      <p>₹1500</p>
+      <button class="ecwid-add-to-cart-btn" data-item-id="12345678">Add to Cart</button> <!-- Replace with your Ecwid product ID -->
+    </div>
+
+    <div class="product-card" data-price="3200" data-gender="women" data-shape="round" data-material="plastic">
+      <img src="assets/product2.jpg" alt="Elegant Round" />
+      <h3>Elegant Round</h3>
+      <p>₹3200</p>
+      <button class="ecwid-add-to-cart-btn" data-item-id="12345679">Add to Cart</button>
+    </div>
+
+    <div class="product-card" data-price="4500" data-gender="men" data-shape="oval" data-material="carbon">
+      <img src="assets/product3.jpg" alt="Sporty Oval" />
+      <h3>Sporty Oval</h3>
+      <p>₹4500</p>
+      <button class="ecwid-add-to-cart-btn" data-item-id="12345680">Add to Cart</button>
+    </div>
+
+    <!-- Add more as you like -->
+  </section>
+
+  <!-- Ecwid free cart embed (Replace YOUR_STORE_ID) -->
+  <div id="ecwid-shopping-cart"></div>
+
+</main>
+
+<!-- Floating WhatsApp Button -->
+<a href="https://wa.me/+91XXXXXXXXXX" target="_blank" class="floating-whatsapp" aria-label="Chat on WhatsApp">💬</a> <!-- Replace phone -->
+
+<script src="https://app.ecwid.com/script.js?YOUR_STORE_ID" charset="utf-8"></script> <!-- Replace YOUR_STORE_ID -->
+<script src="scripts.js"></script>
+
+</body>
+</html>
