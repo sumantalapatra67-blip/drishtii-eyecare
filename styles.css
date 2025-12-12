@@ -1,299 +1,597 @@
-/* ===============================================================
-   Drishtii Eyecare – Premium Luxurious CSS (2025)
-   Ultra-modern glassmorphism, 3D hover, neon buttons, parallax hero
-   Designed for optical retail e-commerce
-================================================================ */
+/* ================================================================
+   drishtii-ultimate-premium.css
+   Ultra-Luxury UI system for Drishtii Eyecare (2025)
+   - Glassmorphism 2.0, volumetric lighting, multi-layer parallax,
+     morphing gradients, holographic text, responsive, accessible.
+   - Copy-paste ready. Use with Google Fonts: Poppins + Inter (variable)
+   - File: drishtii-ultimate-premium.css
+   ============================================================== */
 
-/* ===================== Core Styles ===================== */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;900&display=swap');
+/* =========================
+   Google Fonts (link these in HTML)
+   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;900&family=Inter:opsz,wght@8..72,100..900&display=swap" rel="stylesheet">
+   ========================= */
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
+/* =========================
+   CSS Variables (Design Tokens)
+   ========================= */
+:root{
+  /* Color palette (sapphire, platinum, 24k gold, crystal white) */
+  --sapphire-900: #001831;
+  --sapphire-700: #003a6b;
+  --sapphire-500: #0066b3;
+  --platinum-100: #f5f7fa;
+  --platinum-300: #dfe7ef;
+  --gold-400: #ffd24d;
+  --gold-600: #ffb700;
+  --crystal-white: #ffffff;
+  --muted-100: #9aa7b2;
+  --glass-alpha: rgba(255,255,255,0.06);
+  --glass-border: rgba(255,255,255,0.12);
+
+  /* Depth / shadow */
+  --elev-1: 0 6px 18px rgba(3,13,25,0.25);
+  --elev-2: 0 12px 40px rgba(2,8,20,0.35);
+  --specular: 0 0 18px rgba(255,255,255,0.06);
+
+  /* Motion & performance */
+  --ease-quick: cubic-bezier(.2,.9,.3,1);
+  --ease-smooth: cubic-bezier(.16,.84,.3,1);
+  --anim-fast: 220ms;
+  --anim-med: 450ms;
+  --anim-slow: 900ms;
+
+  /* Layout */
+  --container-width: 1280px;
+  --radius-lg: 20px;
+  --radius-md: 12px;
+  --radius-sm: 8px;
+
+  /* Typography */
+  --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  --font-display: "Poppins", var(--font-sans);
+  --type-base: 16px;
+  --type-scale-ratio: 1.18;
+
+  /* Particle/lighting control (JS can animate these) */
+  --light-x: 50%;
+  --light-y: 30%;
+  --particle-opacity: 0.08;
+
+  /* Accessibility toggles */
+  --reduced-motion: false;
 }
 
+/* Dark / Light mode toggles (add .theme-light to root for light) */
+:root.theme-light {
+  --sapphire-900: #eaf2ff;
+  --sapphire-700: #d4e8ff;
+  --sapphire-500: #b6dbff;
+  --platinum-100: #ffffff;
+  --platinum-300: #f4f7fb;
+  --glass-alpha: rgba(255,255,255,0.55);
+  --glass-border: rgba(15,25,40,0.06);
+  --muted-100: #4b5964;
+  --specular: 0 0 14px rgba(0,0,0,0.05);
+}
+
+/* Respect user reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  :root { --reduced-motion: true; }
+}
+
+/* =========================
+   Base / Reset / Accessibility
+   ========================= */
+* { box-sizing: border-box; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; }
+html { font-family: var(--font-sans); font-size: var(--type-base); -webkit-text-size-adjust:100%; -ms-text-size-adjust:100%; }
 body {
-  background: linear-gradient(145deg, #0d1b2a, #001f3f);
-  color: #ffffff;
-  overflow-x: hidden;
+  margin: 0;
+  background:
+    radial-gradient(1200px 600px at var(--light-x) var(--light-y), rgba(10,20,40,0.45), transparent 20%),
+    linear-gradient(160deg, var(--sapphire-900) 0%, #001a33 30%, #00132a 100%);
+  color: var(--crystal-white);
+  min-height: 100vh;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  contain: layout style paint; /* performance hint */
+  isolation:isolate;
 }
 
-a {
-  text-decoration: none;
-  color: inherit;
-  cursor: pointer;
+/* Text defaults */
+h1,h2,h3,h4,h5,h6 { font-family: var(--font-display); line-height: 1.05; margin:0 0 .6rem 0; color: var(--crystal-white); -webkit-font-smoothing:antialiased; }
+p,span,label,button { font-family: var(--font-sans); color: var(--platinum-100); margin:0; }
+
+/* Accessible focus */
+:focus { outline: none; }
+:focus-visible {
+  outline: 3px solid rgba(255,215,0,0.85);
+  outline-offset: 3px;
+  border-radius: 8px;
 }
 
+/* Link visibility */
+a { color: inherit; text-decoration: none; }
+
+/* Container */
 .container {
-  max-width: 1300px;
+  max-width: var(--container-width);
   margin: 0 auto;
-  padding: 1rem 2rem;
+  padding: clamp(1rem, 2vw, 2rem);
 }
 
-/* Smooth scrolling */
-html {
-  scroll-behavior: smooth;
+/* Utility: visually hidden (for ARIA descriptions) */
+.u-visually-hidden { position: absolute !important; height:1px; width:1px; overflow:hidden; clip:rect(1px,1px,1px,1px); white-space:nowrap; }
+
+/* =========================
+   Typography System
+   - variable font sizing using clamp for responsiveness
+   ========================= */
+:root {
+  --h1: clamp(2rem, calc(1.6rem + 3.6vw), 4rem);
+  --h2: clamp(1.75rem, calc(1.4rem + 2.8vw), 2.8rem);
+  --h3: clamp(1.2rem, calc(1rem + 1.6vw), 1.6rem);
+  --lead: clamp(1rem, calc(.95rem + .6vw), 1.125rem);
 }
 
-/* ===================== Navigation ===================== */
-.header {
-  position: sticky;
-  top: 0;
-  width: 100%;
-  backdrop-filter: blur(15px);
-  background: rgba(0, 0, 31, 0.55);
-  z-index: 999;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-  transition: all 0.3s ease;
-}
+h1 { font-size: var(--h1); font-weight:900; letter-spacing: -0.02em; }
+h2 { font-size: var(--h2); font-weight:800; }
+h3 { font-size: var(--h3); font-weight:700; }
+.lead { font-size: var(--lead); color: var(--platinum-100); opacity: .95; }
 
-.header-content {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem 2rem;
-}
-
-.logo {
-  font-weight: 900;
-  font-size: 2rem;
-  letter-spacing: 2px;
-  color: #ffd700; /* luxury gold */
-  text-shadow: 0 0 5px #ffd700, 0 0 10px #ffd700;
-}
-
-nav ul.nav-links {
-  display: flex;
-  gap: 2rem;
-  list-style: none;
-}
-nav ul.nav-links li a {
-  font-weight: 600;
-  color: #ffffff;
-  padding: 0.5rem 1rem;
-  border-radius: 50px;
-  transition: all 0.3s ease;
-}
-nav ul.nav-links li a:hover {
-  background: rgba(255, 215, 0, 0.2);
-  backdrop-filter: blur(10px);
-  color: #ffd700;
-}
-
-/* ===================== Hero Section ===================== */
-.hero-banner {
+/* Optical distortion (subtle animated warp) */
+.optic-refraction {
   position: relative;
-  width: 100%;
-  height: 600px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: url('assets/hero-banner.jpg') center/cover no-repeat fixed;
-  overflow: hidden;
-  text-align: center;
+  display: inline-block;
+  -webkit-font-smoothing:antialiased;
+}
+.optic-refraction::after {
+  content: '';
+  position: absolute;
+  inset: -6px;
+  pointer-events: none;
+  mix-blend-mode: overlay;
+  background: linear-gradient(90deg, rgba(255,255,255,0.06), rgba(255,200,70,0.06) 30%, rgba(0,150,255,0.03));
+  filter: blur(8px) saturate(120%);
+  opacity: 0.8;
+  transform: translateZ(0);
+  border-radius: 6px;
 }
 
-.hero-banner::after {
+/* Holographic/headline effect (add .holo to element) */
+.holo {
+  color: linear-gradient(90deg,#fff,#ffd24d);
+  background-image:
+    linear-gradient(90deg, rgba(255,255,255,0.95), rgba(255,214,77,0.9));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  position: relative;
+  text-shadow: 0 6px 40px rgba(255,200,30,0.06), 0 2px 10px rgba(0,0,0,0.6);
+  will-change: transform, filter;
+}
+
+/* Chromatic aberration for headings (optional add .chromatic) */
+.chromatic {
+  position: relative;
+}
+.chromatic::before, .chromatic::after {
+  content: attr(data-text);
+  position: absolute;
+  left: 0; top:0;
+  width:100%; height:100%;
+  pointer-events:none;
+  opacity:.35;
+  filter: blur(0.6px);
+}
+.chromatic::before { transform: translateX(-1.5px); color: rgba(255,185,50,0.55); mix-blend-mode: screen; }
+.chromatic::after { transform: translateX(1.5px); color: rgba(0,150,255,0.45); mix-blend-mode: screen; }
+
+/* =========================
+   Layout & Grid
+   ========================= */
+.row { display:flex; gap: clamp(.75rem,1.2vw,1.5rem); flex-wrap:wrap; align-items:stretch; }
+.col { flex:1 1 0; min-width: 0; }
+
+/* Product grid */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: clamp(.75rem,1.2vw,1.5rem);
+  align-items: start;
+}
+
+/* Card containment */
+.card {
+  border-radius: var(--radius-lg);
+  padding: 1.1rem;
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(10px) saturate(120%);
+  -webkit-backdrop-filter: blur(10px) saturate(120%);
+  box-shadow: var(--elev-1), var(--specular);
+  transition: transform var(--anim-med) var(--ease-smooth), box-shadow var(--anim-med);
+  transform-style: preserve-3d;
+  will-change: transform, box-shadow;
+  contain: layout paint;
+}
+
+/* =========================
+   Components: Buttons
+   - Liquid metal morphs with hover ripple
+   ========================= */
+.btn {
+  display: inline-flex; align-items:center; justify-content:center;
+  gap:.6rem; padding: .7rem 1.4rem;
+  border-radius: 999px; font-weight:800; letter-spacing: .6px;
+  border: none; cursor: pointer; position: relative; z-index:1;
+  transform: translateZ(0);
+  will-change: transform, box-shadow;
+}
+
+/* Base shiny CTA */
+.btn--gold {
+  background: linear-gradient(180deg, rgba(255,215,0,0.95), rgba(255,180,0,0.95));
+  color: #081424;
+  box-shadow: 0 10px 30px rgba(255,180,0,0.18), 0 1px 0 rgba(255,255,255,0.08) inset;
+  transition: transform .28s var(--ease-smooth), box-shadow .28s var(--ease-smooth);
+}
+.btn--gold:hover {
+  transform: translateY(-6px) scale(1.03);
+  box-shadow: 0 26px 60px rgba(255,180,0,0.22), 0 6px 12px rgba(0,0,0,0.25);
+}
+
+/* Liquid ripple pseudo-element (physics-like) */
+.btn::after{
+  content:'';
+  position:absolute;
+  inset:0;
+  border-radius:999px;
+  pointer-events:none;
+  background: radial-gradient(circle at var(--x,50%) var(--y,50%), rgba(255,255,255,0.18), rgba(255,255,255,0.02) 18%, transparent 30%);
+  mix-blend-mode: overlay; opacity:0; transition: opacity .35s, transform .5s;
+}
+.btn:active::after { opacity:1; transform: scale(.98); transition: none; }
+
+/* Neon secondary */
+.btn--neon {
+  background: linear-gradient(90deg, rgba(0,180,255,0.12), rgba(20,100,255,0.12));
+  border: 1px solid rgba(0,200,255,0.12);
+  color: var(--crystal-white);
+  box-shadow: 0 6px 30px rgba(0,180,255,0.06), 0 0 30px rgba(0,150,255,0.06) inset;
+}
+.btn--neon:hover { transform: translateY(-4px); box-shadow: 0 16px 60px rgba(0,150,255,0.14); }
+
+/* Ghost small */
+.btn--ghost { background: transparent; border:1px solid rgba(255,255,255,0.06); color:var(--platinum-100); }
+
+/* =========================
+   Components: Product Card (3D floating, specular, tilt-ready)
+   - Add .card--product for product cards
+   - JS can toggle data-tilt attributes for more effect
+   ========================= */
+.card--product {
+  position: relative;
+  overflow: visible;
+  perspective: 1200px;
+  padding: clamp(.9rem,1.2vw,1.6rem);
+}
+.card--product .card-media {
+  width:100%;
+  height: 260px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  border-radius: 14px;
+  overflow: hidden;
+  display:flex; align-items:center; justify-content:center;
+  box-shadow: 0 18px 60px rgba(0,0,0,0.45), 0 4px 8px rgba(255,255,255,0.02) inset;
+  transform-style: preserve-3d;
+  transition: transform var(--anim-med) var(--ease-smooth), box-shadow var(--anim-med);
+  will-change: transform, box-shadow;
+}
+.card--product img {
+  max-width: 110%;
+  height: 100%;
+  object-fit: cover;
+  transform-origin: center center;
+  transition: transform .9s var(--ease-smooth), filter .6s var(--ease-smooth);
+  will-change: transform, filter;
+  display:block;
+}
+
+/* floating / hover */
+.card--product:hover {
+  transform: translateY(-18px) translateZ(14px);
+  box-shadow: 0 40px 120px rgba(0,0,0,0.6);
+}
+.card--product:hover .card-media { transform: translateZ(30px) rotateX(3deg); box-shadow: 0 30px 80px rgba(0,0,0,0.55); }
+.card--product:hover img { transform: scale(1.05) translateZ(24px); filter: saturate(1.08) contrast(1.03); }
+
+/* Specular highlight overlay */
+.card--product::before {
   content: '';
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.45);
+  pointer-events: none;
+  border-radius: inherit;
+  background: linear-gradient(120deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+  mix-blend-mode: overlay;
+  transform: translateZ(60px);
 }
 
-.hero-text {
+/* 3D tilt-ready variables */
+.card--product[data-tilt='true'] { transition: transform .12s var(--ease-quick); }
+.card--product[data-tilt='true'] .card-media { transition: transform .12s var(--ease-quick); }
+
+/* =========================
+   Navigation: sticky, neon, circuit animation
+   ========================= */
+.header {
+  padding: .8rem clamp(1rem, 2vw, 2rem);
+  display:flex; align-items:center; justify-content:space-between;
+}
+.header .logo { display:inline-flex; align-items:center; gap:.6rem; }
+.header nav { display:flex; align-items:center; gap:1.25rem; }
+.header nav a {
+  position:relative;
+  padding:.45rem .8rem;
+  border-radius: 999px;
+  transition: transform var(--anim-fast) var(--ease-quick), box-shadow var(--anim-fast);
+}
+.header nav a::after {
+  content:'';
+  position:absolute; inset:0; border-radius:inherit; pointer-events:none;
+  box-shadow: 0 0 28px rgba(0,200,255,0.06), 0 0 60px rgba(255,200,0,0.02) inset;
+  opacity: 0; transition: opacity .28s;
+}
+.header nav a:hover::after { opacity:1; }
+
+/* small circuit shimmer line (pseudo animation) */
+.header nav a[data-circuit='true']::before {
+  content: '';
+  position: absolute;
+  left: 8%; top: 8%;
+  width: 4px; height: 4px; border-radius: 50%;
+  box-shadow: 0 0 6px rgba(0,220,255,0.9);
+  animation: circuitPulse 2.6s linear infinite;
+}
+@keyframes circuitPulse {
+  0% { transform: translateY(0) scale(.9); opacity:.1; }
+  50% { transform: translateY(-6px) scale(1.2); opacity:1; }
+  100% { transform: translateY(0) scale(.9); opacity:.1; }
+}
+
+/* =========================
+   Hero: multi-layer parallax, animated SVG flares, lens depth
+   ========================= */
+/* hero container uses background-image for depth; include this class on hero section */
+.hero-ultimate {
   position: relative;
-  z-index: 10;
-  max-width: 800px;
-  color: #ffffff;
-  animation: fadeInUp 1.5s ease forwards;
-}
-.hero-text h1 {
-  font-size: 3.5rem;
-  font-weight: 900;
-  margin-bottom: 1rem;
-  text-shadow: 0 0 10px #ffd700, 0 0 20px #ffd700;
-}
-.hero-text p {
-  font-size: 1.5rem;
-  margin-bottom: 2rem;
-  letter-spacing: 1px;
-  color: #c0c0c0;
-  text-shadow: 0 0 8px #ffffff33;
+  min-height: clamp(60vh, 70vh, 840px);
+  display:flex; align-items:center; justify-content:center;
+  overflow: hidden;
+  isolation:isolate;
 }
 
-/* Parallax animation */
-@keyframes fadeInUp {
-  0% {opacity: 0; transform: translateY(50px);}
-  100% {opacity: 1; transform: translateY(0);}
+/* parallax layers (add .parallax-layer with data-depth) - CSS friendly fallback */
+.parallax-layer {
+  position:absolute; inset:0; pointer-events:none; transform-origin:center center;
+  will-change: transform, opacity, filter;
+}
+.parallax-layer.layer-back {
+  background: radial-gradient(1200px 400px at 10% 10%, rgba(0,80,160,0.14), transparent 10%);
+  mix-blend-mode: screen; opacity: .9;
+}
+.parallax-layer.layer-mid {
+  background: radial-gradient(900px 320px at 80% 60%, rgba(255,200,60,0.07), transparent 12%);
+  mix-blend-mode: overlay; opacity: .9;
 }
 
-/* ===================== Buttons ===================== */
-.btn {
-  padding: 0.8rem 2rem;
-  font-weight: 700;
-  border-radius: 50px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  border: none;
-  cursor: pointer;
-  transition: all 0.4s ease;
+/* animated SVG lens flare (add inline SVG inside hero) */
+.lens-flare {
+  position:absolute; left:50%; top:35%; transform:translate(-50%,-50%); pointer-events:none;
+  filter: drop-shadow(0 12px 40px rgba(255,200,64,0.08));
+  animation: flareTwinkle 6.4s ease-in-out infinite;
+  opacity:.95;
+}
+@keyframes flareTwinkle {
+  0% { transform: translate(-48%,-52%) scale(1); opacity:.85; filter: blur(0px); }
+  50% { transform: translate(-52%,-48%) scale(1.06); opacity:1; filter: blur(.6px); }
+  100% { transform: translate(-48%,-52%) scale(1); opacity:.85; filter: blur(0px); }
 }
 
-.btn-primary {
-  background: linear-gradient(45deg, #ffd700, #ffffff);
-  color: #001f3f;
-  box-shadow: 0 0 20px #ffd700, 0 0 40px #ffd70066;
-}
-.btn-primary:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 30px #ffd700, 0 0 60px #ffd700aa;
-}
-
-.btn-secondary {
-  background: linear-gradient(45deg, #00c6ff, #0072ff);
-  color: #ffffff;
-  box-shadow: 0 0 15px #00c6ff, 0 0 30px #0072ffaa;
-}
-.btn-secondary:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 25px #00c6ff, 0 0 50px #0072ffbb;
+/* AI morphing gradient sheet (animated gradient controlled by CSS vars) */
+.morph-gradient {
+  position: absolute; inset: -20% -10% -20% -10%;
+  background: conic-gradient(from 120deg at var(--light-x) var(--light-y),
+             rgba(0,110,180,0.12), rgba(255,200,60,0.06), rgba(10,30,70,0.08));
+  mix-blend-mode: overlay;
+  filter: blur(28px) saturate(120%);
+  opacity: .9;
+  transform: translateZ(0);
+  will-change: transform, opacity, filter;
+  transition: transform 1.2s var(--ease-smooth), opacity 1.2s;
 }
 
-/* ===================== Glassmorphism Cards ===================== */
-.product-card {
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 20px;
-  padding: 1rem;
-  text-align: center;
-  backdrop-filter: blur(15px);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  transition: all 0.5s ease;
-  cursor: pointer;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+/* =========================
+   Animations & Keyframes (reusable)
+   ========================= */
+@keyframes floatY {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0); }
 }
-.product-card img {
-  width: 100%;
-  height: 250px;
-  object-fit: cover;
-  border-radius: 15px;
-  margin-bottom: 1rem;
-  transition: transform 0.5s ease, box-shadow 0.5s ease;
+@keyframes shimmerX {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
 }
-.product-card h3 {
-  font-weight: 700;
-  margin-bottom: 0.5rem;
-  color: #ffd700;
-}
-.product-card p {
-  color: #ffffff;
-  font-weight: 600;
-  margin-bottom: 1rem;
-}
-.product-card:hover {
-  transform: translateY(-15px) rotateX(5deg);
-  box-shadow: 0 20px 50px rgba(255,215,0,0.6);
-}
-.product-card button {
-  margin-top: 0.5rem;
+@keyframes panGlow {
+  0% { filter: hue-rotate(0deg) brightness(1); transform: translateY(0); }
+  50% { filter: hue-rotate(12deg) brightness(1.03); transform: translateY(-6px); }
+  100% { filter: hue-rotate(0deg) brightness(1); transform: translateY(0); }
 }
 
-/* ===================== Categories ===================== */
-.cat-card {
-  flex: 1 1 200px;
-  padding: 1.5rem;
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 20px;
-  text-align: center;
-  font-weight: 700;
-  color: #ffd700;
-  transition: all 0.3s ease;
-  backdrop-filter: blur(10px);
-  box-shadow: 0 10px 30px rgba(255,255,255,0.1);
+/* subtle entrance */
+.reveal { opacity: 0; transform: translateY(14px); }
+.reveal.is-visible { opacity: 1; transform: translateY(0); transition: opacity .9s var(--ease-smooth), transform .9s var(--ease-smooth); }
+
+/* Overlay micro-interactions */
+.hover-lift { transition: transform .28s var(--ease-smooth), box-shadow .28s; }
+.hover-lift:hover { transform: translateY(-8px); }
+
+/* =========================
+   Forms / Inputs / Accessibility
+   ========================= */
+.input {
+  display:block; width:100%;
+  padding:.8rem 1rem; border-radius: 12px; border:1px solid rgba(255,255,255,0.06);
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  color: var(--crystal-white); font-weight:600;
+  transition: box-shadow .22s var(--ease-smooth), border-color .22s var(--ease-smooth);
 }
-.cat-card:hover {
-  transform: scale(1.05);
-  background: rgba(255, 215, 0, 0.15);
+.input:focus { box-shadow: 0 8px 30px rgba(0,150,255,0.06); outline:none; border-color: rgba(0,150,255,0.18); }
+
+/* Accessible labels */
+.label { font-weight:700; display:block; margin-bottom:.4rem; color:var(--platinum-100); }
+
+/* =========================
+   Skeleton Loading States
+   ========================= */
+.skeleton {
+  background: linear-gradient(90deg, rgba(255,255,255,0.03), rgba(255,255,255,0.06), rgba(255,255,255,0.03));
+  background-size: 200% 100%;
+  animation: shimmerX 1.8s linear infinite;
+  border-radius: 8px;
 }
 
-/* ===================== Testimonials ===================== */
-.testimonial-slide {
-  background: rgba(255,255,255,0.05);
-  border-radius: 20px;
-  backdrop-filter: blur(15px);
-  padding: 2rem;
-  margin: 0.5rem;
-  color: #ffffff;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-}
-.testimonial-slide p {
-  font-style: italic;
-  color: #c0c0c0;
-}
-.testimonial-slide span {
-  font-weight: 700;
-  color: #ffd700;
-  display: block;
-  text-align: right;
+/* Example skeleton shapes */
+.skel-rect { height: 14px; width:100%; }
+.skel-card { height: 220px; border-radius: 14px; }
+
+/* =========================
+   Utilities
+   ========================= */
+.u-center { text-align:center; }
+.u-gap { gap: clamp(.5rem, 1vw, 1rem); }
+.flex { display:flex; }
+.flex-column { display:flex; flex-direction:column; }
+.grid { display:grid; }
+.opacity-70 { opacity:.7; }
+.text-muted { color: var(--muted-100); }
+
+/* Responsive image helper (for hero/product responsive) */
+.media-responsive { width:100%; height:auto; display:block; object-fit:cover; }
+
+/* =========================
+   Dark Mode Toggle (class-based)
+   - Add `.theme-light` to <html> or <body> to switch palette
+   ========================= */
+.theme-light body {
+  background:
+    radial-gradient(1200px 500px at var(--light-x) var(--light-y), rgba(255,245,230,0.12), transparent 20%),
+    linear-gradient(160deg, #f6fbff 0%, #eef6ff 40%, #f4f9ff 100%);
+  color: #051022;
 }
 
-/* ===================== Footer ===================== */
-.footer {
-  background: rgba(0, 0, 31, 0.8);
-  backdrop-filter: blur(15px);
-  padding: 3rem 2rem;
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 2rem;
-}
-.footer h3 { color: #ffd700; margin-bottom: 1rem; }
-.footer p { color: #c0c0c0; }
-.footer-socials a {
-  background: rgba(255,255,255,0.05);
-  color: #ffd700;
-  padding: 0.5rem 1rem;
-  border-radius: 15px;
-  font-weight: 700;
-  margin-right: 0.5rem;
-  transition: all 0.3s ease;
-}
-.footer-socials a:hover {
-  background: #ffd700;
-  color: #001f3f;
-  transform: scale(1.1);
+/* Inverted token overrides for .theme-light handled at :root above */
+
+/* =========================
+   Accessibility: reduced motion
+   ========================= */
+@media (prefers-reduced-motion: reduce) {
+  .hero-ultimate, .morph-gradient, .lens-flare, .parallax-layer, .card--product,
+  .btn::after, .reveal { animation: none !important; transition: none !important; transform: none !important; }
 }
 
-/* ===================== Floating WhatsApp ===================== */
-.floating-whatsapp {
-  position: fixed;
-  bottom: 25px;
-  right: 25px;
-  background: #25d366;
-  color: white;
-  font-size: 2.5rem;
-  padding: 0.4rem 0.6rem;
-  border-radius: 50%;
-  box-shadow: 0 10px 20px rgba(37, 211, 102, 0.8);
-  z-index: 9999;
-  transition: all 0.3s ease;
-}
-.floating-whatsapp:hover {
-  background: #128c43;
+/* =========================
+   Responsive Breakpoints (8k -> mobile)
+   ========================= */
+/* Desktop ultra-wide */
+@media (min-width: 2560px) {
+  :root { --container-width: 2000px; --h1: 6.2rem; }
+  .card--product .card-media { height: 420px; }
 }
 
-/* ===================== Responsive ===================== */
-@media (max-width: 1024px){
-  .hero-banner { height: 500px; }
-  .hero-text h1 { font-size: 2.5rem; }
-  .hero-text p { font-size: 1.2rem; }
-  .product-card img { height: 200px; }
+/* Desktop large */
+@media (min-width: 1440px) {
+  :root { --container-width: 1400px; --h1: 4.4rem; }
+  .card--product .card-media { height: 360px; }
 }
 
-@media (max-width: 768px){
-  .hero-banner { height: 400px; flex-direction: column; padding: 2rem 1rem; }
-  nav ul.nav-links { display: none; }
-  .header-content { justify-content: space-between; }
-  .product-card img { height: 180px; }
+/* Laptop / desktop */
+@media (min-width: 1024px) {
+  .hero-ultimate { padding: 2rem 0; }
+  .product-grid { gap: 2rem; }
 }
+
+/* Tablet */
+@media (min-width: 768px) and (max-width: 1023px) {
+  :root { --h1: 3.4rem; }
+  .card--product .card-media { height: 260px; }
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+  :root { --h1: 2.2rem; --container-width: 100%; }
+  .header nav { display:none; }
+  .hero-ultimate { padding: 2rem 1rem; min-height: 48vh; }
+  .card--product .card-media { height: 180px; }
+  .product-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+}
+
+/* Small phones */
+@media (max-width: 420px) {
+  .product-grid { grid-template-columns: 1fr; }
+  .hero-text h1 { font-size: clamp(1.6rem, 4vw, 2rem); }
+}
+
+/* =========================
+   Performance / Rendering Hints
+   - use 'will-change' on heavy anims, GPU transforms
+   ========================= */
+.will-change-transform { will-change: transform, opacity; transform: translateZ(0); }
+.contain-paint { contain: paint; }
+
+/* =========================
+   SEO & ARIA helpers (colors/contrast & focus)
+   ========================= */
+a[aria-current="page"] { box-shadow: inset 0 -6px 0 rgba(255,215,0,0.12); }
+[role="alert"] { border-left: 4px solid var(--gold-600); padding-left: 0.75rem; }
+
+/* =========================
+   Example component classes to use in HTML
+   ========================= */
+
+/* Header / navbar example */
+.header .nav-cta { display:inline-flex; gap:.6rem; align-items:center; }
+
+/* Hero content wrapper */
+.hero-content {
+  position: relative; z-index: 30; text-align:center; padding: clamp(1.2rem, 2vw, 3rem);
+}
+.hero-content .kicker { color: rgba(255,215,0,0.9); font-weight:700; letter-spacing:1px; margin-bottom:.6rem; }
+
+/* Product card content */
+.card--product .card-body { padding-top: .8rem; display:flex; flex-direction:column; gap:.4rem; align-items:stretch; }
+.card--product .price { color: var(--gold-400); font-weight:900; font-size:1.05rem; }
+
+/* Footer */
+.footer { padding: clamp(2rem, 3vw, 4rem); border-top: 1px solid rgba(255,255,255,0.03); }
+
+/* =========================
+   Integration Notes (hooks for JS)
+   - JS can change CSS variables for light position, tilt, theme
+   - set style(--light-x: "40%") and --light-y to animate gradients
+   - add attribute [data-tilt="true"] on card to enable tilt transform via JS
+   - for magnetic cursor use .cursor-magnet and update CSS var --mx --my on mousemove
+   ========================= */
+
+/* Cursor magnet hint */
+.cursor-magnet { transition: transform .08s linear; will-change: transform; }
+
+/* Hook: button ripple origin coordinates (JS: set --x and --y on click) */
+.btn { --x:50%; --y:50%; }
+.btn::after { background: radial-gradient(circle at var(--x) var(--y), rgba(255,255,255,0.14), rgba(255,255,255,0.03) 24%, transparent 28%); }
+
+/* =========================
+   End of file - drishtii-ultimate-premium.css
+   ========================= */
