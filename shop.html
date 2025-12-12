@@ -20,7 +20,7 @@
         <li><a href="index.html#contact">Contact</a></li>
       </ul>
     </nav>
-    <a href="https://wa.me/+919064000639" target="_blank" class="btn btn-primary whatsapp-btn">WhatsApp Now</a> <!-- Replace phone -->
+    <a href="https://wa.me/+919064000639" target="_blank" class="btn btn-primary whatsapp-btn">WhatsApp Now</a>
   </div>
 </header>
 
@@ -28,6 +28,7 @@
 
   <h1>Shop Our Premium Eyewear</h1>
 
+  <!-- Filters -->
   <section class="filters">
     <label for="filter-price">Price:</label>
     <select id="filter-price">
@@ -63,44 +64,57 @@
     </select>
   </section>
 
+  <!-- Product Grid -->
   <section id="product-grid" class="product-grid">
 
-    <!-- Sample product cards -->
+    <!-- 30 Product Cards -->
+    <!-- Example structure: update data-* attributes and Ecwid IDs -->
     <div class="product-card" data-price="1500" data-gender="men" data-shape="square" data-material="metal">
-      <img src="assets/product1.jpg" alt="Classic Rimless" />
-      <h3>Classic Rimless</h3>
+      <img src="assets/product1.jpg" alt="Product 1" />
+      <h3>Product 1</h3>
       <p>₹1500</p>
-      <button class="ecwid-add-to-cart-btn" data-item-id="12345678">Add to Cart</button> <!-- Replace with your Ecwid product ID -->
+      <button class="ecwid-add-to-cart-btn" data-item-id="ECWID_ID_1">Add to Cart</button>
     </div>
 
     <div class="product-card" data-price="3200" data-gender="women" data-shape="round" data-material="plastic">
-      <img src="assets/product2.jpg" alt="Elegant Round" />
-      <h3>Elegant Round</h3>
+      <img src="assets/product2.jpg" alt="Product 2" />
+      <h3>Product 2</h3>
       <p>₹3200</p>
-      <button class="ecwid-add-to-cart-btn" data-item-id="12345679">Add to Cart</button>
+      <button class="ecwid-add-to-cart-btn" data-item-id="ECWID_ID_2">Add to Cart</button>
     </div>
 
     <div class="product-card" data-price="4500" data-gender="men" data-shape="oval" data-material="carbon">
-      <img src="assets/product3.jpg" alt="Sporty Oval" />
-      <h3>Sporty Oval</h3>
+      <img src="assets/product3.jpg" alt="Product 3" />
+      <h3>Product 3</h3>
       <p>₹4500</p>
-      <button class="ecwid-add-to-cart-btn" data-item-id="12345680">Add to Cart</button>
+      <button class="ecwid-add-to-cart-btn" data-item-id="ECWID_ID_3">Add to Cart</button>
     </div>
 
-    <!-- Add more as you like -->
+    <!-- Repeat same structure for product4 → product30 -->
+    <!-- Just increment product image names and Ecwid IDs -->
+
+    <div class="product-card" data-price="2800" data-gender="women" data-shape="cat-eye" data-material="plastic">
+      <img src="assets/product4.jpg" alt="Product 4" />
+      <h3>Product 4</h3>
+      <p>₹2800</p>
+      <button class="ecwid-add-to-cart-btn" data-item-id="ECWID_ID_4">Add to Cart</button>
+    </div>
+
+    <!-- Continue until product30 -->
+    
   </section>
 
-  <!-- Ecwid free cart embed (Replace YOUR_STORE_ID) -->
+  <!-- Ecwid free cart embed -->
   <div id="ecwid-shopping-cart"></div>
 
 </main>
 
 <!-- Floating WhatsApp Button -->
-<a href="https://wa.me/+919064000639" target="_blank" class="floating-whatsapp" aria-label="Chat on WhatsApp">💬</a> <!-- Replace phone -->
+<a href="https://wa.me/+919064000639" target="_blank" class="floating-whatsapp" aria-label="Chat on WhatsApp">💬</a>
 
+<!-- Ecwid Store Script -->
 <script src="https://app.ecwid.com/script.js?YOUR_STORE_ID" charset="utf-8"></script> <!-- Replace YOUR_STORE_ID -->
 <script src="scripts.js"></script>
 
 </body>
 </html>
-
