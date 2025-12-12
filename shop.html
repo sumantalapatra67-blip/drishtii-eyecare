@@ -1,120 +1,59 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Shop - Drishtii Eyecare</title>
-  <link rel="stylesheet" href="styles.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
-</head>
-<body>
+<section id="product-grid" class="product-grid">
 
-<header class="header sticky">
-  <div class="container header-content">
-    <a href="index.html" class="logo">Drishtii Eyecare</a>
-    <nav>
-      <ul class="nav-links">
-        <li><a href="shop.html">Shop</a></li>
-        <li><a href="index.html#featured">Featured</a></li>
-        <li><a href="index.html#testimonials">Testimonials</a></li>
-        <li><a href="index.html#contact">Contact</a></li>
-      </ul>
-    </nav>
-    <a href="https://wa.me/+919064000639" target="_blank" class="btn btn-primary whatsapp-btn">WhatsApp Now</a>
+  <div class="product-card" data-price="1500" data-gender="men" data-shape="square" data-material="metal">
+    <img src="assets/product1 (1).jpg" alt="Product 1" />
+    <h3>Product 1</h3>
+    <p>₹1500</p>
+    <button class="ecwid-add-to-cart-btn" data-item-id="ECWID_ID_1">Add to Cart</button>
   </div>
-</header>
 
-<main class="container shop-page">
+  <div class="product-card" data-price="3200" data-gender="women" data-shape="round" data-material="plastic">
+    <img src="assets/product1 (2).jpg" alt="Product 2" />
+    <h3>Product 2</h3>
+    <p>₹3200</p>
+    <button class="ecwid-add-to-cart-btn" data-item-id="ECWID_ID_2">Add to Cart</button>
+  </div>
 
-  <h1>Shop Our Premium Eyewear</h1>
+  <div class="product-card" data-price="4500" data-gender="men" data-shape="oval" data-material="carbon">
+    <img src="assets/product1 (3).jpg" alt="Product 3" />
+    <h3>Product 3</h3>
+    <p>₹4500</p>
+    <button class="ecwid-add-to-cart-btn" data-item-id="ECWID_ID_3">Add to Cart</button>
+  </div>
 
-  <!-- Filters -->
-  <section class="filters">
-    <label for="filter-price">Price:</label>
-    <select id="filter-price">
-      <option value="all">All</option>
-      <option value="low">Under ₹2000</option>
-      <option value="med">₹2000 - ₹4000</option>
-      <option value="high">Over ₹4000</option>
-    </select>
+  <div class="product-card" data-price="2800" data-gender="women" data-shape="cat-eye" data-material="plastic">
+    <img src="assets/product1 (4).jpg" alt="Product 4" />
+    <h3>Product 4</h3>
+    <p>₹2800</p>
+    <button class="ecwid-add-to-cart-btn" data-item-id="ECWID_ID_4">Add to Cart</button>
+  </div>
 
-    <label for="filter-gender">Gender:</label>
-    <select id="filter-gender">
-      <option value="all">All</option>
-      <option value="men">Men</option>
-      <option value="women">Women</option>
-      <option value="kids">Kids</option>
-    </select>
+  <div class="product-card" data-price="2200" data-gender="men" data-shape="square" data-material="metal">
+    <img src="assets/product1 (5).jpg" alt="Product 5" />
+    <h3>Product 5</h3>
+    <p>₹2200</p>
+    <button class="ecwid-add-to-cart-btn" data-item-id="ECWID_ID_5">Add to Cart</button>
+  </div>
 
-    <label for="filter-shape">Shape:</label>
-    <select id="filter-shape">
-      <option value="all">All</option>
-      <option value="round">Round</option>
-      <option value="square">Square</option>
-      <option value="oval">Oval</option>
-      <option value="cat-eye">Cat Eye</option>
-    </select>
+  <div class="product-card" data-price="2600" data-gender="women" data-shape="round" data-material="plastic">
+    <img src="assets/product1 (7).jpg" alt="Product 6" />
+    <h3>Product 6</h3>
+    <p>₹2600</p>
+    <button class="ecwid-add-to-cart-btn" data-item-id="ECWID_ID_6">Add to Cart</button>
+  </div>
 
-    <label for="filter-material">Material:</label>
-    <select id="filter-material">
-      <option value="all">All</option>
-      <option value="metal">Metal</option>
-      <option value="plastic">Plastic</option>
-      <option value="carbon">Carbon Fiber</option>
-    </select>
-  </section>
+  <div class="product-card" data-price="3000" data-gender="men" data-shape="square" data-material="metal">
+    <img src="assets/product1 (11).jpg" alt="Product 7" />
+    <h3>Product 7</h3>
+    <p>₹3000</p>
+    <button class="ecwid-add-to-cart-btn" data-item-id="ECWID_ID_7">Add to Cart</button>
+  </div>
 
-  <!-- Product Grid -->
-  <section id="product-grid" class="product-grid">
+  <div class="product-card" data-price="3500" data-gender="women" data-shape="oval" data-material="plastic">
+    <img src="assets/product1 (12).jpg" alt="Product 8" />
+    <h3>Product 8</h3>
+    <p>₹3500</p>
+    <button class="ecwid-add-to-cart-btn" data-item-id="ECWID_ID_8">Add to Cart</button>
+  </div>
 
-    <!-- 30 Product Cards -->
-    <!-- Example structure: update data-* attributes and Ecwid IDs -->
-    <div class="product-card" data-price="1500" data-gender="men" data-shape="square" data-material="metal">
-      <img src="assets/product1.jpg" alt="Product 1" />
-      <h3>Product 1</h3>
-      <p>₹1500</p>
-      <button class="ecwid-add-to-cart-btn" data-item-id="ECWID_ID_1">Add to Cart</button>
-    </div>
-
-    <div class="product-card" data-price="3200" data-gender="women" data-shape="round" data-material="plastic">
-      <img src="assets/product2.jpg" alt="Product 2" />
-      <h3>Product 2</h3>
-      <p>₹3200</p>
-      <button class="ecwid-add-to-cart-btn" data-item-id="ECWID_ID_2">Add to Cart</button>
-    </div>
-
-    <div class="product-card" data-price="4500" data-gender="men" data-shape="oval" data-material="carbon">
-      <img src="assets/product3.jpg" alt="Product 3" />
-      <h3>Product 3</h3>
-      <p>₹4500</p>
-      <button class="ecwid-add-to-cart-btn" data-item-id="ECWID_ID_3">Add to Cart</button>
-    </div>
-
-    <!-- Repeat same structure for product4 → product30 -->
-    <!-- Just increment product image names and Ecwid IDs -->
-
-    <div class="product-card" data-price="2800" data-gender="women" data-shape="cat-eye" data-material="plastic">
-      <img src="assets/product4.jpg" alt="Product 4" />
-      <h3>Product 4</h3>
-      <p>₹2800</p>
-      <button class="ecwid-add-to-cart-btn" data-item-id="ECWID_ID_4">Add to Cart</button>
-    </div>
-
-    <!-- Continue until product30 -->
-    
-  </section>
-
-  <!-- Ecwid free cart embed -->
-  <div id="ecwid-shopping-cart"></div>
-
-</main>
-
-<!-- Floating WhatsApp Button -->
-<a href="https://wa.me/+919064000639" target="_blank" class="floating-whatsapp" aria-label="Chat on WhatsApp">💬</a>
-
-<!-- Ecwid Store Script -->
-<script src="https://app.ecwid.com/script.js?YOUR_STORE_ID" charset="utf-8"></script> <!-- Replace YOUR_STORE_ID -->
-<script src="scripts.js"></script>
-
-</body>
-</html>
+</section>
