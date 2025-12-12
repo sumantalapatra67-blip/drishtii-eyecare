@@ -1,100 +1,149 @@
-    <!-- Testimonials -->
-    <section id="testimonials" class="container testimonials">
-      <h2>What Our Customers Say</h2>
-      <div class="testimonial-carousel">
-        <div class="testimonial-slide">
-          <p>"Amazing service, the glasses fit perfectly!"</p>
-          <span>- Rina S.</span>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Drishtii Eyecare – Premium Vision for Premium People</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="styles.css" />
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="header sticky">
+    <div class="container header-content">
+      <a href="index.html" class="logo">Drishtii Eyecare</a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="shop.html">Shop</a></li>
+          <li><a href="#featured">Featured</a></li>
+          <li><a href="#testimonials">Testimonials</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <a href="https://wa.me/919064000639" target="_blank" class="btn btn-primary whatsapp-btn">WhatsApp Now</a>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <main>
+
+    <!-- HERO SECTION -->
+    <section class="hero-banner container">
+      <div class="hero-text">
+        <h1>Drishtii Eyecare – Premium Vision for Premium People</h1>
+        <p>See Better. Look Better. Live Better.</p>
+        <a href="shop.html" class="btn btn-primary">Shop Now</a>
+        <a href="shop.html" class="btn btn-secondary">Buy 1 Get 1 Free Offer</a>
+      </div>
+
+      <!-- HERO SLIDER IMAGES -->
+      <div class="hero-sliders">
+        <div class="slider fade">
+          <img src="assets/banner-1.jpg" alt="Premium Glasses Banner 1" />
         </div>
-        <div class="testimonial-slide">
-          <p>"Quick delivery and excellent customer care."</p>
-          <span>- Arjun M.</span>
+        <div class="slider fade">
+          <img src="assets/banner-2.jpg" alt="Premium Glasses Banner 2" />
         </div>
-        <div class="testimonial-slide">
-          <p>"Great selection of stylish frames. Highly recommend!"</p>
-          <span>- Neha T.</span>
+        <div class="slider fade">
+          <img src="assets/banner-3.jpg" alt="Premium Glasses Banner 3" />
         </div>
       </div>
     </section>
 
-    <!-- Appointment Booking Section -->
-    <section id="appointment" class="container" style="margin-top:3rem;margin-bottom:3rem;">
-      <h2 style="text-align:center;color:#fff;margin-bottom:1.5rem;">
-        Book an Eye Checkup Appointment
-      </h2>
-
-      <form id="appointment-form"
-            onsubmit="handleAppointmentSubmit(event)"
-            style="max-width:600px;margin:0 auto;background:rgba(255,255,255,0.15);backdrop-filter:blur(15px);padding:2rem;border-radius:20px;box-shadow:0 15px 35px rgba(0,0,0,0.3);">
-
-        <div style="margin-bottom:1rem;">
-          <label for="name" style="display:block;font-weight:700;color:#fff;margin-bottom:0.3rem;">Full Name</label>
-          <input type="text" id="name" required
-                 style="width:100%;padding:0.7rem;border-radius:10px;border:none;outline:none;">
-        </div>
-
-        <div style="margin-bottom:1rem;">
-          <label for="phone" style="display:block;font-weight:700;color:#fff;margin-bottom:0.3rem;">Mobile Number</label>
-          <input type="tel" id="phone" required
-                 style="width:100%;padding:0.7rem;border-radius:10px;border:none;outline:none;">
-        </div>
-
-        <div style="margin-bottom:1rem;">
-          <label for="date" style="display:block;font-weight:700;color:#fff;margin-bottom:0.3rem;">Preferred Date</label>
-          <input type="date" id="date" required
-                 style="width:100%;padding:0.7rem;border-radius:10px;border:none;outline:none;">
-        </div>
-
-        <div style="margin-bottom:1.5rem;">
-          <label for="time" style="display:block;font-weight:700;color:#fff;margin-bottom:0.3rem;">Preferred Time</label>
-          <input type="time" id="time" required
-                 style="width:100%;padding:0.7rem;border-radius:10px;border:none;outline:none;">
-        </div>
-
-        <button type="submit" class="btn btn-secondary" style="width:100%;text-align:center;">
-          Book Appointment on WhatsApp
-        </button>
-      </form>
+    <!-- CATEGORIES -->
+    <section id="shop-categories" class="categories container">
+      <h2>Shop Categories</h2>
+      <div class="cat-grid">
+        <a href="shop.html?cat=men" class="cat-card">Men</a>
+        <a href="shop.html?cat=women" class="cat-card">Women</a>
+        <a href="shop.html?cat=kids" class="cat-card">Kids</a>
+        <a href="shop.html?cat=computer" class="cat-card">Computer Glasses</a>
+        <a href="shop.html?cat=sunglasses" class="cat-card">Sunglasses</a>
+      </div>
     </section>
-  </main>
 
-  <!-- Footer / Contact -->
-  <footer id="contact" class="footer">
-    <div>
-      <h3>Contact Us</h3>
-      <p>Bethuadahari, West Bengal</p>
-      <p>Phone: +91-9064000639</p>
-      <p>Email: info@drishtii-eyecare.com</p>
-    </div>
-    <div class="footer-socials">
-      <a href="#" aria-label="Facebook" class="social-icon">FB</a>
-      <a href="#" aria-label="Instagram" class="social-icon">IG</a>
-      <a href="#" aria-label="Twitter" class="social-icon">TW</a>
-    </div>
-    <div>
-      <p>© 2025 Drishtii Eyecare. All rights reserved.</p>
-    </div>
-  </footer>
+    <!-- FEATURED PRODUCTS -->
+    <section id="featured" class="featured-collections container">
+      <h2>Featured Collections</h2>
+      <div class="featured-grid">
 
-  <!-- Floating WhatsApp -->
-  <a href="https://wa.me/919064000639"
-     target="_blank"
-     class="floating-whatsapp"
-     aria-label="Chat on WhatsApp">💬</a>
+        <!-- Product 1 -->
+        <div class="product-card">
+          <img src="assets/product-1.jpg" alt="Classic Black Frame" />
+          <h3>Classic Black Frame</h3>
+          <p>Starting at ₹XXXX</p>
+          <a href="shop.html" class="btn btn-secondary">Shop Now</a>
+        </div>
 
-  <!-- Appointment JS -->
-  <script>
-    function handleAppointmentSubmit(e) {
-      e.preventDefault();
-      const name  = document.getElementById('name').value.trim();
-      const phone = document.getElementById('phone').value.trim();
-      const date  = document.getElementById('date').value;
-      const time  = document.getElementById('time').value;
+        <!-- Product 2 -->
+        <div class="product-card">
+          <img src="assets/product-2.jpg" alt="Premium Metal Frame" />
+          <h3>Premium Metal Frame</h3>
+          <p>Starting at ₹XXXX</p>
+          <a href="shop.html" class="btn btn-secondary">Shop Now</a>
+        </div>
 
-      const msg = `Hi Drishtii Eyecare, I want to book an appointment.%0AName: ${name}%0APhone: ${phone}%0APreferred Date: ${date}%0APreferred Time: ${time}`;
-      window.open(`https://wa.me/919064000639?text=${msg}`, '_blank');
-    }
-  </script>
+        <!-- Product 3 -->
+        <div class="product-card">
+          <img src="assets/product-3.jpg" alt="Trendy Lightweight Frame" />
+          <h3>Trendy Lightweight Frame</h3>
+          <p>Starting at ₹XXXX</p>
+          <a href="shop.html" class="btn btn-secondary">Shop Now</a>
+        </div>
 
-</body>
-</html>
+        <!-- Product 4 -->
+        <div class="product-card">
+          <img src="assets/product-4.jpg" alt="Minimalist Office Frame" />
+          <h3>Minimalist Office Frame</h3>
+          <p>Starting at ₹XXXX</p>
+          <a href="shop.html" class="btn btn-secondary">Shop Now</a>
+        </div>
+
+        <!-- Product 5 -->
+        <div class="product-card">
+          <img src="assets/product-5.jpg" alt="Blue Tone Eyewear" />
+          <h3>Blue Tone Eyewear</h3>
+          <p>Starting at ₹XXXX</p>
+          <a href="shop.html" class="btn btn-secondary">Shop Now</a>
+        </div>
+
+        <!-- Product 6 -->
+        <div class="product-card">
+          <img src="assets/product-6.jpg" alt="Pastel Everyday Frame" />
+          <h3>Pastel Everyday Frame</h3>
+          <p>Starting at ₹XXXX</p>
+          <a href="shop.html" class="btn btn-secondary">Shop Now</a>
+        </div>
+
+        <!-- Product 7 -->
+        <div class="product-card">
+          <img src="assets/product-7.jpg" alt="Green Style Frame" />
+          <h3>Green Style Frame</h3>
+          <p>Starting at ₹XXXX</p>
+          <a href="shop.html" class="btn btn-secondary">Shop Now</a>
+        </div>
+
+        <!-- Product 8 -->
+        <div class="product-card">
+          <img src="assets/product-8.jpg" alt="Model Wearing Glasses" />
+          <h3>Signature Model Look</h3>
+          <p>Starting at ₹XXXX</p>
+          <a href="shop.html" class="btn btn-secondary">Shop Now</a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- OFFERS -->
+    <section id="offers" class="container offers-banner">
+      <p>🔥 <strong>Buy 1 Get 1 Free</strong> on select frames. Hurry! Limited time offer.</p>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section id="testimonials" class="container testimonials">
+      <h2>
