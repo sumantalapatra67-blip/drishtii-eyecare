@@ -1,22 +1,3 @@
-<!-- FIREBASE (WORKS FOR NORMAL HTML WEBSITE) -->
-<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
-
-<script>
-const firebaseConfig = {
-  apiKey: "AIzaSyDy8sQ9YGRI3xQoR8HLdoxWvY8E7T654Y4",
-  authDomain: "drishtiiusers.firebaseapp.com",
-  projectId: "drishtiiusers",
-  storageBucket: "drishtiiusers.firebasestorage.app",
-  messagingSenderId: "464279956816",
-  appId: "1:464279956816:web:a0340b39a8b9c6e3ba9055"
-};
-
-firebase.initializeApp(firebaseConfig);
-const auth = firebase.auth();
-const db = firebase.firestore();
-</script>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,330 +10,176 @@ const db = firebase.firestore();
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
+
+  <!-- 🔥 FIREBASE (CORRECT FOR NORMAL HTML) -->
+  <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
+
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyDy8sQ9YGRI3xQoR8HLdoxWvY8E7T654Y4",
+      authDomain: "drishtiiusers.firebaseapp.com",
+      projectId: "drishtiiusers",
+      storageBucket: "drishtiiusers.firebasestorage.app",
+      messagingSenderId: "464279956816",
+      appId: "1:464279956816:web:a0340b39a8b9c6e3ba9055"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+    const db = firebase.firestore();
+  </script>
 </head>
+
 <body>
 
-  <!-- HEADER -->
-  <header class="header sticky">
-    <div class="container header-content">
-      <a href="index.html" class="logo">Drishtii Eyecare</a>
-      <nav>
-        <ul class="nav-links">
-          <li><a href="shop.html">Shop</a></li>
-          <li><a href="#featured">Featured</a></li>
-          <li><a href="#testimonials">Testimonials</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-      </nav>
-      <a href="https://wa.me/919064000639" target="_blank" class="btn btn-primary whatsapp-btn">WhatsApp Now</a>
+<!-- HEADER -->
+<header class="header sticky">
+  <div class="container header-content">
+    <a href="index.html" class="logo">Drishtii Eyecare</a>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="shop.html">Shop</a></li>
+        <li><a href="#featured">Featured</a></li>
+        <li><a href="#appointment">Appointment</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+    <a href="https://wa.me/919064000639" target="_blank" class="btn btn-primary">WhatsApp Now</a>
+  </div>
+</header>
+
+<main>
+
+<!-- 🔐 LOGIN / REGISTER -->
+<section style="padding:2rem;background:#f4f4f4;text-align:center;">
+  <h2>Login / Register</h2>
+  <input id="email" placeholder="Email" style="padding:10px;margin:5px;">
+  <input id="password" type="password" placeholder="Password" style="padding:10px;margin:5px;">
+  <br><br>
+  <button onclick="login()">Login</button>
+  <button onclick="register()">Register</button>
+</section>
+
+<!-- 📄 PRESCRIPTIONS -->
+<section id="prescription" style="display:none;padding:2rem;">
+  <h2>My Prescriptions</h2>
+  <div id="prescription-list"></div>
+  <button onclick="addPrescription()">Add Prescription</button>
+</section>
+
+<!-- HERO -->
+<section class="hero-banner container">
+  <h1>Drishtii Eyecare – Premium Vision for Premium People</h1>
+  <p>See Better. Look Better. Live Better.</p>
+  <a href="shop.html" class="btn btn-primary">Shop Now</a>
+</section>
+
+<!-- OFFER -->
+<section class="container offers-banner">
+  <p>🔥 <strong>Premium Eyeglasses @ ₹999</strong> — Frame + Lenses + Eye Checkup</p>
+</section>
+
+<!-- FEATURED -->
+<section id="featured" class="featured-collections container">
+  <h2>Featured Collections</h2>
+  <div class="featured-grid">
+    <div class="product-card">
+      <img src="assets/product-1.jpg">
+      <h3>Classic Black Frame</h3>
+      <p>₹599</p>
     </div>
-  </header>
-
-  <!-- MAIN CONTENT -->
-  <main>
-
-    <!-- HERO SECTION -->
-    <section class="hero-banner container">
-      <div class="hero-text">
-        <h1>Drishtii Eyecare – Premium Vision for Premium People</h1>
-        <p>See Better. Look Better. Live Better.</p>
-        <a href="shop.html" class="btn btn-primary">Shop Now</a>
-        <a href="shop.html" class="btn btn-secondary">Buy 1 Get 1 Free Offer</a>
-      </div>
-
-  <div class="special-offer highlight">
-    <div class="offer-tag">LIMITED TIME • TODAY ONLY</div>
-
-    <h2>THE ₹999 PREMIUM EYECARE OFFER</h2>
-
-    <ul>
-      <li>✔ Full Eye Checkup</li>
-      <li>✔ Premium Zero-Power Lens</li>
-      <li>✔ Anti-Glare Coating</li>
-      <li>✔ Frame Included</li>
-    </ul>
-
-    <div class="offer-price">
-      <span class="old">₹1999</span>
-      <span class="new pulse-price">₹999</span>
+    <div class="product-card">
+      <img src="assets/product1 (2).jpg">
+      <h3>Premium Metal</h3>
+      <p>₹1999</p>
     </div>
-
-    <button class="grab-offer glow-btn">Grab the ₹999 Deal</button>
   </div>
 </section>
 
-
-    </section>
-
-    <!-- CATEGORIES -->
-    <section id="shop-categories" class="categories container">
-      <h2>Shop Categories</h2>
-      <div class="cat-grid">
-        <a href="shop.html?cat=men" class="cat-card">Men</a>
-        <a href="shop.html?cat=women" class="cat-card">Women</a>
-        <a href="shop.html?cat=kids" class="cat-card">Kids</a>
-        <a href="shop.html?cat=computer" class="cat-card">Computer Glasses</a>
-        <a href="shop.html?cat=sunglasses" class="cat-card">Sunglasses</a>
-      </div>
-    </section>
-
-    <!-- FEATURED PRODUCTS -->
-    <section id="featured" class="featured-collections container">
-      <h2>Featured Collections</h2>
-      <div class="featured-grid">
-
-        <!-- Product 1 -->
-        <div class="product-card">
-          <img src="assets/product-1.jpg" alt="Classic Black Frame" />
-          <h3>Classic Black Frame</h3>
-          <p>Starting at ₹599</p>
-          <a href="shop.html" class="btn btn-secondary">Shop Now</a>
-        </div>
-
-        <!-- Product 2 -->
-        <div class="product-card">
-          <img src="assets/product1 (2).jpg" alt="Premium Metal Frame" />
-          <h3>Premium Metal Frame</h3>
-          <p>Starting at ₹1999</p>
-          <a href="shop.html" class="btn btn-secondary">Shop Now</a>
-        </div>
-
-        <!-- Product 3 -->
-        <div class="product-card">
-          <img src="assets/product1 (3).jpg" alt="Trendy Lightweight Frame" />
-          <h3>Trendy Lightweight Frame</h3>
-          <p>Starting at ₹999</p>
-          <a href="shop.html" class="btn btn-secondary">Shop Now</a>
-        </div>
-
-        <!-- Product 4 -->
-        <div class="product-card">
-          <img src="assets/product1 (4).jpg" alt="Minimalist Office Frame" />
-          <h3>Minimalist Office Frame</h3>
-          <p>Starting at ₹799</p>
-          <a href="shop.html" class="btn btn-secondary">Shop Now</a>
-        </div>
-
-        <!-- Product 5 -->
-        <div class="product-card">
-          <img src="assets/product1 (5).jpg" alt="Blue Tone Eyewear" />
-          <h3>Blue Tone Eyewear</h3>
-          <p>Starting at ₹899</p>
-          <a href="shop.html" class="btn btn-secondary">Shop Now</a>
-        </div>
-
-        <!-- Product 6 -->
-        <div class="product-card">
-          <img src="assets/product1 (7).jpg" alt="Pastel Everyday Frame" />
-          <h3>Pastel Everyday Frame</h3>
-          <p>Starting at ₹699</p>
-          <a href="shop.html" class="btn btn-secondary">Shop Now</a>
-        </div>
-
-        <!-- Product 7 -->
-        <div class="product-card">
-          <img src="assets/product1 (11).jpg" alt="Green Style Frame" />
-          <h3>Green Style Frame</h3>
-          <p>Starting at ₹1199</p>
-          <a href="shop.html" class="btn btn-secondary">Shop Now</a>
-        </div>
-
-        <!-- Product 8 -->
-        <div class="product-card">
-          <img src="assets/product1 (12).jpg" alt="Model Wearing Glasses" />
-          <h3>Signature Model Look</h3>
-          <p>Starting at ₹2999</p>
-          <a href="shop.html" class="btn btn-secondary">Shop Now</a>
-        </div>
-
-      </div>
-    </section>
-
-  <!-- OFFERS -->
-<section id="offers" class="container offers-banner">
-  <p>🔥 <strong>Premium Eyeglasses @ just ₹999</strong> — Includes Frame + Lenses + Free Eye Checkup.  
-  Zero Hidden Costs. Highest Value. Limited Slots Only!</p>
+<!-- APPOINTMENT -->
+<section id="appointment" class="container">
+  <h2>Book Eye Checkup</h2>
+  <form onsubmit="handleAppointmentSubmit(event)">
+    <input id="name" placeholder="Name" required>
+    <input id="phone" placeholder="Phone" required>
+    <input id="date" type="date" required>
+    <input id="time" type="time" required>
+    <button type="submit">Book on WhatsApp</button>
+  </form>
 </section>
 
+</main>
 
-    <!-- TESTIMONIALS -->
-    <section id="testimonials" class="container testimonials">
-      <h2>What Our Customers Say</h2>
-      <div class="testimonial-carousel">
-        <div class="testimonial-slide">
-          <p>"Amazing service, the glasses fit perfectly!"</p>
-          <span>- ARPAN MONDAL.</span>
-        </div>
-        <div class="testimonial-slide">
-          <p>"Quick delivery and excellent customer care."</p>
-          <span>- AMIT SAHA.</span>
-        </div>
-        <div class="testimonial-slide">
-          <p>"Great selection of stylish frames. Highly recommend!"</p>
-          <span>- SAHIN REZA.</span>
-        </div>
-      </div>
-    </section>
+<!-- FOOTER -->
+<footer id="contact" class="footer">
+  <p>Bethuadahari, West Bengal</p>
+  <p>📞 9064000639</p>
+  <p>© 2025 Drishtii Eyecare</p>
+</footer>
 
-    <!-- APPOINTMENT BOOKING -->
-    <section id="appointment" class="container" style="margin-top:3rem;margin-bottom:3rem;">
-      <h2 style="text-align:center;color:#fff;margin-bottom:1.5rem;">
-        Book an Eye Checkup Appointment
-      </h2>
+<!-- FLOATING WHATSAPP -->
+<a href="https://wa.me/919064000639" class="floating-whatsapp">💬</a>
 
-      <form id="appointment-form"
-            onsubmit="handleAppointmentSubmit(event)"
-            style="max-width:600px;margin:0 auto;background:rgba(255,255,255,0.15);backdrop-filter:blur(15px);padding:2rem;border-radius:20px;box-shadow:0 15px 35px rgba(0,0,0,0.3);">
-
-        <div style="margin-bottom:1rem;">
-          <label for="name" style="display:block;font-weight:700;color:#fff;margin-bottom:0.3rem;">Full Name</label>
-          <input type="text" id="name" required
-                 style="width:100%;padding:0.7rem;border-radius:10px;border:none;outline:none;">
-        </div>
-
-        <div style="margin-bottom:1rem;">
-          <label for="phone" style="display:block;font-weight:700;color:#fff;margin-bottom:0.3rem;">Mobile Number</label>
-          <input type="tel" id="phone" required
-                 style="width:100%;padding:0.7rem;border-radius:10px;border:none;outline:none;">
-        </div>
-
-        <div style="margin-bottom:1rem;">
-          <label for="date" style="display:block;font-weight:700;color:#fff;margin-bottom:0.3rem;">Preferred Date</label>
-          <input type="date" id="date" required
-                 style="width:100%;padding:0.7rem;border-radius:10px;border:none;outline:none;">
-        </div>
-
-        <div style="margin-bottom:1.5rem;">
-          <label for="time" style="display:block;font-weight:700;color:#fff;margin-bottom:0.3rem;">Preferred Time</label>
-          <input type="time" id="time" required
-                 style="width:100%;padding:0.7rem;border-radius:10px;border:none;outline:none;">
-        </div>
-
-        <button type="submit" class="btn btn-secondary" style="width:100%;text-align:center;">
-          Book Appointment on WhatsApp
-        </button>
-      </form>
-    </section>
-
-  </main>
-
-  <!-- FOOTER / CONTACT -->
-  <footer id="contact" class="footer">
-    <div>
-      <h3>Contact Us</h3>
-      <p>Bethuadahari, West Bengal</p>
-      <p>Phone: +91-9064000639</p>
-      <p>Email: info@drishtii-eyecare.com</p>
-    </div>
-  <div class="footer-socials">
-  <a href="https://instagram.com/drishtiieyecare"
-     target="_blank"
-     aria-label="Instagram"
-     class="social-icon">
-        <img src="images/instagram.png" alt="Instagram" class="insta-icon">
-  </a>
-</div>
-
-
-    <div>
-      <p>© 2025 Drishtii Eyecare. All rights reserved.</p>
-    </div>
-  </footer>
-
-  <!-- FLOATING WHATSAPP -->
-  <a href="https://wa.me/919064000639"
-     target="_blank"
-     class="floating-whatsapp"
-     aria-label="Chat on WhatsApp">💬</a>
-
-  <!-- APPOINTMENT JS -->
-  <script>
-    function handleAppointmentSubmit(e) {
-      e.preventDefault();
-      const name  = document.getElementById('name').value.trim();
-      const phone = document.getElementById('phone').value.trim();
-      const date  = document.getElementById('date').value;
-      const time  = document.getElementById('time').value;
-
-      const msg =
-        `Hi Drishtii Eyecare, I want to book an appointment.%0A` +
-        `Name: ${name}%0A` +
-        `Phone: ${phone}%0A` +
-        `Preferred Date: ${date}%0A` +
-        `Preferred Time: ${time}`;
-
-      window.open(`https://wa.me/919064000639?text=${msg}`, '_blank');
-    }
-  </script>
-
-</body>
-</html>
+<!-- 🔧 JAVASCRIPT -->
 <script>
 let currentUser = null;
 
 auth.onAuthStateChanged(user => {
   currentUser = user;
   if (user) {
-    document.getElementById('prescription').style.display = 'block';
+    document.getElementById("prescription").style.display = "block";
     loadPrescriptions();
   }
 });
 
 function login() {
-  const email = document.getElementById('email').value;
-  const password = document.getElementById('password').value;
-  auth.signInWithEmailAndPassword(email, password).catch(console.error);
+  auth.signInWithEmailAndPassword(email.value, password.value)
+    .catch(alert);
 }
 
 function register() {
-  const email = document.getElementById('email').value;
-  const password = document.getElementById('password').value;
-  auth.createUserWithEmailAndPassword(email, password).catch(console.error);
+  auth.createUserWithEmailAndPassword(email.value, password.value)
+    .catch(alert);
+}
+
+function addPrescription() {
+  const rightSPH = prompt("Right SPH");
+  const leftSPH = prompt("Left SPH");
+
+  db.collection("prescriptions").add({
+    userId: currentUser.uid,
+    rightSPH,
+    leftSPH,
+    date: new Date().toDateString()
+  }).then(loadPrescriptions);
 }
 
 function loadPrescriptions() {
-  db.collection('prescriptions').where('userId', '==', currentUser.uid)
-    .get().then(snapshot => {
-      const list = document.getElementById('prescription-list');
-      list.innerHTML = '';
-      snapshot.forEach(doc => {
-        const data = doc.data();
-        list.innerHTML += `
-          <div style="background:white; padding:1.5rem; margin:1rem 0; border-radius:15px; box-shadow:0 5px 15px rgba(0,0,0,0.1);">
-            <h3>Date: ${data.date}</h3>
-            <p><strong>Right Eye:</strong> SPH ${data.rightSPH}, CYL ${data.rightCYL}, AXIS ${data.rightAXIS}</p>
-            <p><strong>Left Eye:</strong> SPH ${data.leftSPH}, CYL ${data.leftCYL}, AXIS ${data.leftAXIS}</p>
-            <a href="https://wa.me/919064000639?text=Hi, my prescription: Right SPH ${data.rightSPH}..." class="buy-btn">Order Lenses</a>
-          </div>`;
+  db.collection("prescriptions")
+    .where("userId","==",currentUser.uid)
+    .get()
+    .then(snap => {
+      prescription-list.innerHTML = "";
+      snap.forEach(doc => {
+        const d = doc.data();
+        prescription-list.innerHTML += `
+          <p>
+            ${d.date}<br>
+            Right: ${d.rightSPH} | Left: ${d.leftSPH}
+          </p>
+        `;
       });
     });
 }
 
-function addPrescription() {
-  const rightSPH = prompt('Right SPH:');
-  const rightCYL = prompt('Right CYL:');
-  const rightAXIS = prompt('Right AXIS:');
-  const leftSPH = prompt('Left SPH:');
-  const leftCYL = prompt('Left CYL:');
-  const leftAXIS = prompt('Left AXIS:');
-  
-  db.collection('prescriptions').add({
-    userId: currentUser.uid,
-    date: new Date().toLocaleDateString(),
-    rightSPH, rightCYL, rightAXIS,
-    leftSPH, leftCYL, leftAXIS
-  }).then(() => loadPrescriptions());
+function handleAppointmentSubmit(e) {
+  e.preventDefault();
+  const msg = `Appointment Request`;
+  window.open("https://wa.me/919064000639?text=" + msg);
 }
 </script>
 
-
-
-
-
-
-
-
-
-
-
-
+</body>
+</html>
