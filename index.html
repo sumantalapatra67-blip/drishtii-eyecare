@@ -1,3 +1,22 @@
+<!-- FIREBASE (WORKS FOR NORMAL HTML WEBSITE) -->
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
+
+<script>
+const firebaseConfig = {
+  apiKey: "AIzaSyDy8sQ9YGRI3xQoR8HLdoxWvY8E7T654Y4",
+  authDomain: "drishtiiusers.firebaseapp.com",
+  projectId: "drishtiiusers",
+  storageBucket: "drishtiiusers.firebasestorage.app",
+  messagingSenderId: "464279956816",
+  appId: "1:464279956816:web:a0340b39a8b9c6e3ba9055"
+};
+
+firebase.initializeApp(firebaseConfig);
+const auth = firebase.auth();
+const db = firebase.firestore();
+</script>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -325,6 +344,7 @@ function addPrescription() {
   }).then(() => loadPrescriptions());
 }
 </script>
+
 
 
 
