@@ -268,6 +268,64 @@
 
 </body>
 </html>
+<script>
+let currentUser = null;
+
+auth.onAuthStateChanged(user => {
+  currentUser = user;
+  if (user) {
+    document.getElementById('prescription').style.display = 'block';
+    loadPrescriptions();
+  }
+});
+
+function login() {
+  const email = document.getElementById('email').value;
+  const password = document.getElementById('password').value;
+  auth.signInWithEmailAndPassword(email, password).catch(console.error);
+}
+
+function register() {
+  const email = document.getElementById('email').value;
+  const password = document.getElementById('password').value;
+  auth.createUserWithEmailAndPassword(email, password).catch(console.error);
+}
+
+function loadPrescriptions() {
+  db.collection('prescriptions').where('userId', '==', currentUser.uid)
+    .get().then(snapshot => {
+      const list = document.getElementById('prescription-list');
+      list.innerHTML = '';
+      snapshot.forEach(doc => {
+        const data = doc.data();
+        list.innerHTML += `
+          <div style="background:white; padding:1.5rem; margin:1rem 0; border-radius:15px; box-shadow:0 5px 15px rgba(0,0,0,0.1);">
+            <h3>Date: ${data.date}</h3>
+            <p><strong>Right Eye:</strong> SPH ${data.rightSPH}, CYL ${data.rightCYL}, AXIS ${data.rightAXIS}</p>
+            <p><strong>Left Eye:</strong> SPH ${data.leftSPH}, CYL ${data.leftCYL}, AXIS ${data.leftAXIS}</p>
+            <a href="https://wa.me/919064000639?text=Hi, my prescription: Right SPH ${data.rightSPH}..." class="buy-btn">Order Lenses</a>
+          </div>`;
+      });
+    });
+}
+
+function addPrescription() {
+  const rightSPH = prompt('Right SPH:');
+  const rightCYL = prompt('Right CYL:');
+  const rightAXIS = prompt('Right AXIS:');
+  const leftSPH = prompt('Left SPH:');
+  const leftCYL = prompt('Left CYL:');
+  const leftAXIS = prompt('Left AXIS:');
+  
+  db.collection('prescriptions').add({
+    userId: currentUser.uid,
+    date: new Date().toLocaleDateString(),
+    rightSPH, rightCYL, rightAXIS,
+    leftSPH, leftCYL, leftAXIS
+  }).then(() => loadPrescriptions());
+}
+</script>
+
 
 
 
