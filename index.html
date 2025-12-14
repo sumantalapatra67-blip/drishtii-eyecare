@@ -1,185 +1,290 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Drishtii Eyecare – Premium Vision for Premium People</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Drishtii Eyecare</title>
 
-  <!-- CSS -->
-  <link rel="stylesheet" href="styles.css" />
+<!-- GOOGLE FONT -->
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
+<!-- 🔥 FIREBASE (DO NOT TOUCH) -->
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
 
-  <!-- 🔥 FIREBASE (CORRECT FOR NORMAL HTML) -->
-  <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
+<script>
+const firebaseConfig = {
+  apiKey: "AIzaSyDy8sQ9YGRI3xQoR8HLdoxWvY8E7T654Y4",
+  authDomain: "drishtiiusers.firebaseapp.com",
+  projectId: "drishtiiusers",
+  storageBucket: "drishtiiusers.firebasestorage.app",
+  messagingSenderId: "464279956816",
+  appId: "1:464279956816:web:a0340b39a8b9c6e3ba9055"
+};
 
-  <script>
-    const firebaseConfig = {
-      apiKey: "AIzaSyDy8sQ9YGRI3xQoR8HLdoxWvY8E7T654Y4",
-      authDomain: "drishtiiusers.firebaseapp.com",
-      projectId: "drishtiiusers",
-      storageBucket: "drishtiiusers.firebasestorage.app",
-      messagingSenderId: "464279956816",
-      appId: "1:464279956816:web:a0340b39a8b9c6e3ba9055"
-    };
+firebase.initializeApp(firebaseConfig);
+const auth = firebase.auth();
+const db = firebase.firestore();
+</script>
 
-    firebase.initializeApp(firebaseConfig);
-    const auth = firebase.auth();
-    const db = firebase.firestore();
-  </script>
+<style>
+:root{
+  --orange:#FF6B35;
+  --green:#00A651;
+  --gradient:linear-gradient(135deg,#FF6B35,#00A651,#2196F3);
+}
+
+body{
+  margin:0;
+  font-family:Montserrat,Arial;
+  background:#fff;
+}
+
+.container{
+  max-width:1200px;
+  margin:auto;
+  padding:20px;
+}
+
+header{
+  position:sticky;
+  top:0;
+  background:white;
+  box-shadow:0 5px 20px rgba(0,0,0,.08);
+  z-index:10;
+}
+
+.header-flex{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.logo{
+  font-weight:700;
+  font-size:22px;
+  color:var(--orange);
+  text-decoration:none;
+}
+
+.btn{
+  padding:12px 25px;
+  border:none;
+  border-radius:30px;
+  cursor:pointer;
+  font-weight:600;
+}
+
+.btn-orange{background:var(--orange);color:white;}
+.btn-green{background:var(--green);color:white;}
+
+.hero{
+  background:var(--gradient);
+  color:white;
+  text-align:center;
+  padding:80px 20px;
+}
+
+.hero h1{font-size:48px;margin:0;}
+
+.products{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:20px;
+}
+
+.card{
+  box-shadow:0 15px 30px rgba(0,0,0,.1);
+  border-radius:20px;
+  overflow:hidden;
+}
+
+.card img{
+  width:100%;
+  height:220px;
+  object-fit:cover;
+}
+
+.card div{padding:15px;}
+
+.price{
+  font-size:26px;
+  font-weight:700;
+  color:var(--green);
+}
+
+.section{
+  padding:50px 0;
+}
+
+.trust{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:20px;
+  text-align:center;
+  background:#f8f9ff;
+}
+
+input{
+  padding:12px;
+  margin:5px;
+  width:250px;
+}
+
+footer{
+  text-align:center;
+  padding:20px;
+  background:#111;
+  color:white;
+}
+
+.whatsapp{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  width:60px;
+  height:60px;
+  background:#25D366;
+  color:white;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:28px;
+  text-decoration:none;
+}
+</style>
 </head>
 
 <body>
 
-<!-- HEADER -->
-<header class="header sticky">
-  <div class="container header-content">
-    <a href="index.html" class="logo">Drishtii Eyecare</a>
-    <nav>
-      <ul class="nav-links">
-        <li><a href="shop.html">Shop</a></li>
-        <li><a href="#featured">Featured</a></li>
-        <li><a href="#appointment">Appointment</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </nav>
-    <a href="https://wa.me/919064000639" target="_blank" class="btn btn-primary">WhatsApp Now</a>
+<header>
+  <div class="container header-flex">
+    <a class="logo">Drishtii Eyecare</a>
+    <a href="https://wa.me/919064000639" class="btn btn-green">WhatsApp</a>
   </div>
 </header>
 
-<main>
-
-<!-- 🔐 LOGIN / REGISTER -->
-<section style="padding:2rem;background:#f4f4f4;text-align:center;">
-  <h2>Login / Register</h2>
-  <input id="email" placeholder="Email" style="padding:10px;margin:5px;">
-  <input id="password" type="password" placeholder="Password" style="padding:10px;margin:5px;">
-  <br><br>
-  <button onclick="login()">Login</button>
-  <button onclick="register()">Register</button>
-</section>
-
-<!-- 📄 PRESCRIPTIONS -->
-<section id="prescription" style="display:none;padding:2rem;">
-  <h2>My Prescriptions</h2>
-  <div id="prescription-list"></div>
-  <button onclick="addPrescription()">Add Prescription</button>
-</section>
-
 <!-- HERO -->
-<section class="hero-banner container">
-  <h1>Drishtii Eyecare – Premium Vision for Premium People</h1>
-  <p>See Better. Look Better. Live Better.</p>
-  <a href="shop.html" class="btn btn-primary">Shop Now</a>
+<section class="hero">
+  <h1>Glasses @ ₹999</h1>
+  <p>Frame + Lens + Eye Test</p>
+  <button class="btn btn-orange">Shop Now</button>
 </section>
 
-<!-- OFFER -->
-<section class="container offers-banner">
-  <p>🔥 <strong>Premium Eyeglasses @ ₹999</strong> — Frame + Lenses + Eye Checkup</p>
+<!-- LOGIN -->
+<section class="section" style="background:#f4f4f4;text-align:center">
+  <h2>Login / Register</h2>
+  <input id="email" placeholder="Email">
+  <input id="password" type="password" placeholder="Password"><br>
+  <button class="btn btn-orange" onclick="login()">Login</button>
+  <button class="btn btn-green" onclick="register()">Register</button>
 </section>
 
-<!-- FEATURED -->
-<section id="featured" class="featured-collections container">
-  <h2>Featured Collections</h2>
-  <div class="featured-grid">
-    <div class="product-card">
-      <img src="assets/product-1.jpg">
-      <h3>Classic Black Frame</h3>
-      <p>₹599</p>
+<!-- PRESCRIPTION -->
+<section id="prescription" class="section" style="display:none">
+  <div class="container">
+    <h2>My Prescriptions</h2>
+    <div id="prescriptionList"></div>
+    <button class="btn btn-orange" onclick="addPrescription()">Add Prescription</button>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section class="section">
+  <div class="container products">
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1587563871167-1ee9c731aefb?w=400">
+      <div>
+        <h3>Aviator</h3>
+        <div class="price">₹999</div>
+      </div>
     </div>
-    <div class="product-card">
-      <img src="assets/product1 (2).jpg">
-      <h3>Premium Metal</h3>
-      <p>₹1999</p>
+
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1600180758890-6b94519a8ba6?w=400">
+      <div>
+        <h3>Square</h3>
+        <div class="price">₹999</div>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- APPOINTMENT -->
-<section id="appointment" class="container">
+<section class="section" style="text-align:center">
   <h2>Book Eye Checkup</h2>
-  <form onsubmit="handleAppointmentSubmit(event)">
-    <input id="name" placeholder="Name" required>
-    <input id="phone" placeholder="Phone" required>
-    <input id="date" type="date" required>
-    <input id="time" type="time" required>
-    <button type="submit">Book on WhatsApp</button>
-  </form>
+  <input id="name" placeholder="Name">
+  <input id="phone" placeholder="Phone"><br>
+  <button class="btn btn-green" onclick="book()">Book on WhatsApp</button>
 </section>
 
-</main>
+<!-- TRUST -->
+<section class="section trust">
+  <div>⭐ 4.9 Rating</div>
+  <div>50K+ Customers</div>
+  <div>24H Delivery</div>
+  <div>100% Authentic</div>
+</section>
 
-<!-- FOOTER -->
-<footer id="contact" class="footer">
+<footer>
   <p>Bethuadahari, West Bengal</p>
   <p>📞 9064000639</p>
-  <p>© 2025 Drishtii Eyecare</p>
 </footer>
 
-<!-- FLOATING WHATSAPP -->
-<a href="https://wa.me/919064000639" class="floating-whatsapp">💬</a>
+<a class="whatsapp" href="https://wa.me/919064000639">💬</a>
 
-<!-- 🔧 JAVASCRIPT -->
 <script>
-let currentUser = null;
+let currentUser=null;
 
-auth.onAuthStateChanged(user => {
-  currentUser = user;
-  if (user) {
-    document.getElementById("prescription").style.display = "block";
+auth.onAuthStateChanged(user=>{
+  if(user){
+    currentUser=user;
+    prescription.style.display="block";
     loadPrescriptions();
   }
 });
 
-function login() {
-  auth.signInWithEmailAndPassword(email.value, password.value)
-    .catch(alert);
+function login(){
+  auth.signInWithEmailAndPassword(email.value,password.value)
+  .catch(alert);
 }
 
-function register() {
-  auth.createUserWithEmailAndPassword(email.value, password.value)
-    .catch(alert);
+function register(){
+  auth.createUserWithEmailAndPassword(email.value,password.value)
+  .catch(alert);
 }
 
-function addPrescription() {
-  const rightSPH = prompt("Right SPH");
-  const leftSPH = prompt("Left SPH");
+function addPrescription(){
+  const r=prompt("Right SPH");
+  const l=prompt("Left SPH");
 
   db.collection("prescriptions").add({
-    userId: currentUser.uid,
-    rightSPH,
-    leftSPH,
-    date: new Date().toDateString()
+    userId:currentUser.uid,
+    rightSPH:r,
+    leftSPH:l,
+    date:new Date().toDateString()
   }).then(loadPrescriptions);
 }
 
-function loadPrescriptions() {
+function loadPrescriptions(){
+  prescriptionList.innerHTML="";
   db.collection("prescriptions")
-    .where("userId","==",currentUser.uid)
-    .get()
-    .then(snap => {
-      prescription-list.innerHTML = "";
-      snap.forEach(doc => {
-        const d = doc.data();
-        prescription-list.innerHTML += `
-          <p>
-            ${d.date}<br>
-            Right: ${d.rightSPH} | Left: ${d.leftSPH}
-          </p>
-        `;
-      });
+  .where("userId","==",currentUser.uid)
+  .get()
+  .then(snap=>{
+    snap.forEach(d=>{
+      const p=d.data();
+      prescriptionList.innerHTML+=`<p>${p.date} | R:${p.rightSPH} L:${p.leftSPH}</p>`;
     });
+  });
 }
 
-function handleAppointmentSubmit(e) {
-  e.preventDefault();
-  const msg = `Appointment Request`;
-  window.open("https://wa.me/919064000639?text=" + msg);
+function book(){
+  window.open("https://wa.me/919064000639?text=Eye%20Checkup%20Appointment");
 }
 </script>
 
 </body>
-</html> 
+</html>
