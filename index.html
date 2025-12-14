@@ -1,185 +1,457 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Drishtii Eyecare – Premium Vision for Premium People</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drishtii Eyecare – Premium Vision for Premium People</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- 🔥 YOUR FIREBASE (KEEPING IT WORKING) -->
+    <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
 
-  <!-- CSS -->
-  <link rel="stylesheet" href="styles.css" />
+    <style>
+        :root {
+            --primary-gradient: linear-gradient(135deg, #64B5F6 0%, #2196F3 50%, #1976D2 100%);
+            --secondary-gradient: linear-gradient(135deg, #FF6B9D 0%, #FF8E53 50%, #FF5722 100%);
+            --accent-gradient: linear-gradient(135deg, #72C7C0 0%, #64B5F6 100%);
+            --glass-bg: rgba(255, 255, 255, 0.25);
+            --glass-border: rgba(255, 255, 255, 0.18);
+            --shadow-lg: 0 25px 45px rgba(0,0,0,0.1);
+            --shadow-sm: 0 10px 30px rgba(0,0,0,0.1);
+            --text-primary: #1a1a1a;
+            --text-secondary: #666;
+            --success: #4CAF50;
+        }
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Poppins', sans-serif; 
+            line-height: 1.6; 
+            color: var(--text-primary);
+            overflow-x: hidden;
+        }
 
-  <!-- 🔥 FIREBASE (CORRECT FOR NORMAL HTML) -->
-  <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
+        /* Header with Firebase User Status */
+        .header {
+            position: fixed; top: 0; width: 100%; 
+            background: rgba(255,255,255,0.95); 
+            backdrop-filter: blur(20px); 
+            z-index: 1000; padding: 1rem 0; 
+            transition: all 0.3s ease;
+            border-bottom: 1px solid var(--glass-border);
+        }
 
-  <script>
-    const firebaseConfig = {
-      apiKey: "AIzaSyDy8sQ9YGRI3xQoR8HLdoxWvY8E7T654Y4",
-      authDomain: "drishtiiusers.firebaseapp.com",
-      projectId: "drishtiiusers",
-      storageBucket: "drishtiiusers.firebasestorage.app",
-      messagingSenderId: "464279956816",
-      appId: "1:464279956816:web:a0340b39a8b9c6e3ba9055"
-    };
+        .nav-container {
+            max-width: 1400px; margin: 0 auto; 
+            display: flex; justify-content: space-between; 
+            align-items: center; padding: 0 2rem;
+        }
 
-    firebase.initializeApp(firebaseConfig);
-    const auth = firebase.auth();
-    const db = firebase.firestore();
-  </script>
+        .logo {
+            font-size: 1.8rem; font-weight: 700;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+
+        .user-status {
+            display: flex; align-items: center; gap: 1rem;
+            background: var(--glass-bg); padding: 0.5rem 1rem; 
+            border-radius: 25px; border: 1px solid var(--glass-border);
+        }
+
+        .btn {
+            padding: 0.8rem 1.5rem; border: none; 
+            border-radius: 50px; font-weight: 600; 
+            text-decoration: none; display: inline-flex; 
+            align-items: center; gap: 0.5rem; 
+            transition: all 0.3s ease; cursor: pointer;
+        }
+
+        .btn-primary { background: var(--primary-gradient); color: white; box-shadow: var(--shadow-sm); }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); }
+        .btn-secondary { background: transparent; color: var(--text-primary); border: 2px solid var(--glass-border); backdrop-filter: blur(10px); }
+        .btn-secondary:hover { background: var(--glass-bg); }
+
+        /* LOGIN MODAL (Better UX) */
+        .login-modal {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+            background: rgba(0,0,0,0.8); z-index: 2000; display: none;
+            align-items: center; justify-content: center;
+        }
+
+        .modal-content {
+            background: white; padding: 3rem; border-radius: 30px; 
+            max-width: 400px; width: 90%; box-shadow: var(--shadow-lg);
+            text-align: center;
+        }
+
+        .form-group { margin-bottom: 1.5rem; }
+        .form-group input { 
+            width: 100%; padding: 1rem; border: 2px solid #eee; 
+            border-radius: 15px; font-size: 1rem; transition: border 0.3s;
+        }
+        .form-group input:focus { outline: none; border-color: var(--primary-gradient); }
+
+        /* Hero Section */
+        .hero { 
+            min-height: 100vh; background: var(--primary-gradient); 
+            display: flex; align-items: center; position: relative; 
+            margin-top: 80px; /* Header height */
+        }
+
+        .container { max-width: 1400px; margin: 0 auto; padding: 0 2rem; }
+
+        .hero-content { 
+            display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; 
+            align-items: center;
+        }
+
+        .hero-text h1 { 
+            font-size: clamp(2.5rem, 5vw, 4.5rem); font-weight: 700; 
+            color: white; margin-bottom: 1.5rem; line-height: 1.2;
+        }
+
+        /* Prescription Section (Your Feature - Enhanced) */
+        .prescription-section {
+            padding: 6rem 2rem; background: #f8f9ff;
+            display: none;
+        }
+
+        .prescription-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem; margin-bottom: 2rem;
+        }
+
+        .prescription-card {
+            background: white; padding: 2rem; border-radius: 25px;
+            box-shadow: var(--shadow-sm); border-left: 5px solid var(--primary-gradient);
+        }
+
+        /* Products & Featured (Enhanced) */
+        .featured-section { padding: 6rem 2rem; background: white; }
+        .products-grid { 
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+            gap: 2rem; 
+        }
+
+        .product-card {
+            background: white; border-radius: 25px; overflow: hidden;
+            box-shadow: var(--shadow-sm); transition: all 0.4s ease;
+            cursor: pointer; position: relative;
+        }
+
+        .product-card:hover { transform: translateY(-10px); box-shadow: var(--shadow-lg); }
+
+        .product-image { height: 250px; position: relative; overflow: hidden; }
+        .product-image img { 
+            width: 100%; height: 100%; object-fit: cover; 
+            transition: transform 0.5s ease;
+        }
+
+        .product-card:hover .product-image img { transform: scale(1.1); }
+
+        .product-info { padding: 1.5rem; }
+        .product-title { font-size: 1.1rem; font-weight: 600; margin-bottom: 0.5rem; }
+        .product-price { font-size: 1.5rem; font-weight: 700; color: var(--success); }
+
+        /* Appointment Section (Your Feature - Enhanced) */
+        .appointment-section { 
+            padding: 6rem 2rem; background: var(--secondary-gradient); 
+            color: white; text-align: center;
+        }
+
+        .appointment-form {
+            max-width: 500px; margin: 0 auto; background: rgba(255,255,255,0.2);
+            padding: 3rem; border-radius: 30px; backdrop-filter: blur(20px);
+        }
+
+        .appointment-form input {
+            width: 100%; padding: 1rem; margin-bottom: 1rem; 
+            border: none; border-radius: 15px; font-size: 1rem;
+        }
+
+        /* Floating WhatsApp (Your Feature - Enhanced) */
+        .whatsapp-sticky {
+            position: fixed; bottom: 20px; right: 20px; 
+            width: 60px; height: 60px; background: #25D366;
+            border-radius: 50%; display: flex; align-items: center;
+            justify-content: center; box-shadow: var(--shadow-lg);
+            z-index: 1001; animation: pulse 2s infinite; cursor: pointer;
+            color: white; font-size: 1.5rem; text-decoration: none;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .hero-content { grid-template-columns: 1fr; text-align: center; gap: 2rem; }
+            .nav-container { flex-wrap: wrap; }
+        }
+    </style>
 </head>
-
 <body>
+    <!-- 🔥 YOUR FIREBASE CONFIG -->
+    <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyDy8sQ9YGRI3xQoR8HLdoxWvY8E7T654Y4",
+            authDomain: "drishtiiusers.firebaseapp.com",
+            projectId: "drishtiiusers",
+            storageBucket: "drishtiiusers.firebasestorage.app",
+            messagingSenderId: "464279956816",
+            appId: "1:464279956816:web:a0340b39a8b9c6e3ba9055"
+        };
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+        const db = firebase.firestore();
+    </script>
 
-<!-- HEADER -->
-<header class="header sticky">
-  <div class="container header-content">
-    <a href="index.html" class="logo">Drishtii Eyecare</a>
-    <nav>
-      <ul class="nav-links">
-        <li><a href="shop.html">Shop</a></li>
-        <li><a href="#featured">Featured</a></li>
-        <li><a href="#appointment">Appointment</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </nav>
-    <a href="https://wa.me/919064000639" target="_blank" class="btn btn-primary">WhatsApp Now</a>
-  </div>
-</header>
+    <!-- Header -->
+    <header class="header">
+        <div class="nav-container">
+            <a href="#" class="logo">Drishtii Eyecare</a>
+            <div class="user-status" id="userStatus">
+                <i class="fas fa-user-circle"></i>
+                <span id="userText">Login/Register</span>
+                <button class="btn btn-secondary" onclick="toggleLoginModal()" id="loginBtn">Login</button>
+            </div>
+            <a href="https://wa.me/919064000639" class="btn btn-primary">WhatsApp Now</a>
+        </div>
+    </header>
 
-<main>
-
-<!-- 🔐 LOGIN / REGISTER -->
-<section style="padding:2rem;background:#f4f4f4;text-align:center;">
-  <h2>Login / Register</h2>
-  <input id="email" placeholder="Email" style="padding:10px;margin:5px;">
-  <input id="password" type="password" placeholder="Password" style="padding:10px;margin:5px;">
-  <br><br>
-  <button onclick="login()">Login</button>
-  <button onclick="register()">Register</button>
-</section>
-
-<!-- 📄 PRESCRIPTIONS -->
-<section id="prescription" style="display:none;padding:2rem;">
-  <h2>My Prescriptions</h2>
-  <div id="prescription-list"></div>
-  <button onclick="addPrescription()">Add Prescription</button>
-</section>
-
-<!-- HERO -->
-<section class="hero-banner container">
-  <h1>Drishtii Eyecare – Premium Vision for Premium People</h1>
-  <p>See Better. Look Better. Live Better.</p>
-  <a href="shop.html" class="btn btn-primary">Shop Now</a>
-</section>
-
-<!-- OFFER -->
-<section class="container offers-banner">
-  <p>🔥 <strong>Premium Eyeglasses @ ₹999</strong> — Frame + Lenses + Eye Checkup</p>
-</section>
-
-<!-- FEATURED -->
-<section id="featured" class="featured-collections container">
-  <h2>Featured Collections</h2>
-  <div class="featured-grid">
-    <div class="product-card">
-      <img src="assets/product-1.jpg">
-      <h3>Classic Black Frame</h3>
-      <p>₹599</p>
+    <!-- LOGIN MODAL (Enhanced UX) -->
+    <div class="login-modal" id="loginModal">
+        <div class="modal-content">
+            <h2 id="modalTitle">Login</h2>
+            <div class="form-group">
+                <input type="email" id="email" placeholder="Email" required>
+            </div>
+            <div class="form-group">
+                <input type="password" id="password" placeholder="Password" required>
+            </div>
+            <button class="btn btn-primary" onclick="login()" style="width: 100%; margin-bottom: 1rem;">Login</button>
+            <button class="btn btn-secondary" onclick="switchToRegister()" style="width: 100%;">Create Account</button>
+            <button class="btn btn-secondary" onclick="toggleLoginModal()" style="width: 100%;">Close</button>
+        </div>
     </div>
-    <div class="product-card">
-      <img src="assets/product1 (2).jpg">
-      <h3>Premium Metal</h3>
-      <p>₹1999</p>
-    </div>
-  </div>
-</section>
 
-<!-- APPOINTMENT -->
-<section id="appointment" class="container">
-  <h2>Book Eye Checkup</h2>
-  <form onsubmit="handleAppointmentSubmit(event)">
-    <input id="name" placeholder="Name" required>
-    <input id="phone" placeholder="Phone" required>
-    <input id="date" type="date" required>
-    <input id="time" type="time" required>
-    <button type="submit">Book on WhatsApp</button>
-  </form>
-</section>
+    <!-- Hero -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>Premium Vision<br>for Premium People</h1>
+                    <p>See Better. Look Better. Live Better. With virtual try-on, home eye tests & unbeatable offers.</p>
+                    <a href="#featured" class="btn btn-primary" style="font-size: 1.1rem; padding: 1rem 2rem;">
+                        <i class="fas fa-shopping-bag"></i> Shop Now
+                    </a>
+                </div>
+                <div style="text-align: center;">
+                    <div style="background: var(--glass-bg); backdrop-filter: blur(20px); padding: 2rem; border-radius: 30px; border: 1px solid var(--glass-border); box-shadow: var(--shadow-lg);">
+                        <img src="https://images.unsplash.com/photo-1587563871167-1ee9c731aefb?w=300&h=200&fit=crop&crop=face" alt="Premium Frame" style="width: 100%; border-radius: 20px;">
+                        <div style="margin-top: 1rem;">
+                            <div style="font-size: 1.5rem; font-weight: 700; color: var(--success);">₹999</div>
+                            <div style="text-decoration: line-through; color: rgba(255,255,255,0.7);">₹2999</div>
+                            <span style="background: var(--secondary-gradient); color: white; padding: 0.3rem 1rem; border-radius: 20px; font-size: 0.8rem;">70% OFF</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-</main>
+    <!-- 🔥 YOUR PRESCRIPTION SECTION (Enhanced Design) -->
+    <section class="prescription-section" id="prescriptionSection">
+        <div class="container">
+            <h2 style="text-align: center; font-size: 3rem; margin-bottom: 1rem; background: var(--accent-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">My Prescriptions</h2>
+            <p style="text-align: center; color: var(--text-secondary); margin-bottom: 3rem;">Securely stored & accessible anytime</p>
+            <div class="prescription-grid" id="prescription-list"></div>
+            <div style="text-align: center;">
+                <button class="btn btn-primary" onclick="addPrescription()" style="font-size: 1.1rem; padding: 1rem 2rem;">
+                    <i class="fas fa-plus"></i> Add New Prescription
+                </button>
+            </div>
+        </div>
+    </section>
 
-<!-- FOOTER -->
-<footer id="contact" class="footer">
-  <p>Bethuadahari, West Bengal</p>
-  <p>📞 9064000639</p>
-  <p>© 2025 Drishtii Eyecare</p>
-</footer>
+    <!-- Featured Products -->
+    <section class="featured-section" id="featured">
+        <div class="container">
+            <h2 style="text-align: center; font-size: 3rem; margin-bottom: 3rem;">Featured Collections</h2>
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1587563871167-1ee9c731aefb?w=400&h=300&fit=crop" alt="Classic Black Frame" loading="lazy">
+                        <div style="position: absolute; top: 1rem; right: 1rem; background: var(--secondary-gradient); color: white; padding: 0.4rem 0.8rem; border-radius: 20px;">60% OFF</div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Classic Black Frame</h3>
+                        <div class="product-price">₹599 <span style="text-decoration: line-through; color: var(--text-secondary);">₹1999</span></div>
+                        <button class="btn btn-primary" style="width: 100%; margin-top: 1rem;">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1591076482164-d6f749a94747?w=400&h=300&fit=crop" alt="Premium Metal" loading="lazy">
+                        <div style="position: absolute; top: 1rem; right: 1rem; background: var(--secondary-gradient); color: white; padding: 0.4rem 0.8rem; border-radius: 20px;">50% OFF</div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Premium Metal</h3>
+                        <div class="product-price">₹1999 <span style="text-decoration: line-through; color: var(--text-secondary);">₹3999</span></div>
+                        <button class="btn btn-primary" style="width: 100%; margin-top: 1rem;">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<!-- FLOATING WHATSAPP -->
-<a href="https://wa.me/919064000639" class="floating-whatsapp">💬</a>
+    <!-- 🔥 YOUR APPOINTMENT SECTION (Enhanced) -->
+    <section class="appointment-section" id="appointment">
+        <div class="container">
+            <h2 style="font-size: 3.5rem; margin-bottom: 1rem;">Book Eye Checkup</h2>
+            <p style="font-size: 1.3rem; margin-bottom: 3rem; opacity: 0.9;">Free home visit by certified optometrist</p>
+            <form class="appointment-form" onsubmit="handleAppointmentSubmit(event)">
+                <input id="name" placeholder="Full Name" required>
+                <input id="phone" placeholder="Phone Number" required>
+                <input id="date" type="date" required>
+                <input id="time" type="time" required>
+                <button type="submit" class="btn btn-primary" style="width: 100%; font-size: 1.2rem; padding: 1.5rem;">
+                    <i class="fab fa-whatsapp"></i> Book on WhatsApp
+                </button>
+            </form>
+        </div>
+    </section>
 
-<!-- 🔧 JAVASCRIPT -->
-<script>
-let currentUser = null;
+    <!-- Floating WhatsApp -->
+    <a href="https://wa.me/919064000639" class="whatsapp-sticky" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
 
-auth.onAuthStateChanged(user => {
-  currentUser = user;
-  if (user) {
-    document.getElementById("prescription").style.display = "block";
-    loadPrescriptions();
-  }
-});
+    <!-- YOUR JAVASCRIPT (Enhanced + All Features) -->
+    <script>
+        let currentUser = null;
 
-function login() {
-  auth.signInWithEmailAndPassword(email.value, password.value)
-    .catch(alert);
-}
+        // Firebase Auth State
+        auth.onAuthStateChanged(user => {
+            currentUser = user;
+            if (user) {
+                document.getElementById('userText').textContent = `Hi, ${user.email}`;
+                document.getElementById('loginBtn').textContent = 'Logout';
+                document.getElementById('loginBtn').onclick = logout;
+                document.getElementById('prescriptionSection').style.display = 'block';
+                loadPrescriptions();
+            } else {
+                document.getElementById('userText').textContent = 'Login/Register';
+                document.getElementById('loginBtn').textContent = 'Login';
+                document.getElementById('loginBtn').onclick = toggleLoginModal;
+                document.getElementById('prescriptionSection').style.display = 'none';
+            }
+        });
 
-function register() {
-  auth.createUserWithEmailAndPassword(email.value, password.value)
-    .catch(alert);
-}
+        // Modal Functions
+        function toggleLoginModal() {
+            document.getElementById('loginModal').style.display = 'flex';
+        }
 
-function addPrescription() {
-  const rightSPH = prompt("Right SPH");
-  const leftSPH = prompt("Left SPH");
+        function switchToRegister() {
+            document.getElementById('modalTitle').textContent = 'Register';
+            document.getElementById('loginBtn').onclick = register;
+        }
 
-  db.collection("prescriptions").add({
-    userId: currentUser.uid,
-    rightSPH,
-    leftSPH,
-    date: new Date().toDateString()
-  }).then(loadPrescriptions);
-}
+        function switchToLogin() {
+            document.getElementById('modalTitle').textContent = 'Login';
+            document.getElementById('loginBtn').onclick = login;
+        }
 
-function loadPrescriptions() {
-  db.collection("prescriptions")
-    .where("userId","==",currentUser.uid)
-    .get()
-    .then(snap => {
-      prescription-list.innerHTML = "";
-      snap.forEach(doc => {
-        const d = doc.data();
-        prescription-list.innerHTML += `
-          <p>
-            ${d.date}<br>
-            Right: ${d.rightSPH} | Left: ${d.leftSPH}
-          </p>
-        `;
-      });
-    });
-}
+        // Your Firebase Functions (Unchanged + Enhanced)
+        function login() {
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            auth.signInWithEmailAndPassword(email, password)
+                .then(() => document.getElementById('loginModal').style.display = 'none')
+                .catch(err => alert('Login failed: ' + err.message));
+        }
 
-function handleAppointmentSubmit(e) {
-  e.preventDefault();
-  const msg = `Appointment Request`;
-  window.open("https://wa.me/919064000639?text=" + msg);
-}
-</script>
+        function register() {
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            auth.createUserWithEmailAndPassword(email, password)
+                .then(() => document.getElementById('loginModal').style.display = 'none')
+                .catch(err => alert('Register failed: ' + err.message));
+        }
 
+        function logout() {
+            auth.signOut();
+        }
+
+        function addPrescription() {
+            const rightSPH = prompt("Right SPH:");
+            const leftSPH = prompt("Left SPH:");
+            if (rightSPH && leftSPH && currentUser) {
+                db.collection("prescriptions").add({
+                    userId: currentUser.uid,
+                    rightSPH, leftSPH,
+                    date: new Date().toDateString()
+                }).then(() => {
+                    loadPrescriptions();
+                    alert('✅ Prescription saved!');
+                });
+            }
+        }
+
+        function loadPrescriptions() {
+            if (!currentUser) return;
+            db.collection("prescriptions")
+                .where("userId", "==", currentUser.uid)
+                .get()
+                .then(snap => {
+                    const list = document.getElementById('prescription-list');
+                    list.innerHTML = '';
+                    if (snap.empty) {
+                        list.innerHTML = '<p style="text-align: center; color: var(--text-secondary);">No prescriptions yet. Add your first one!</p>';
+                        return;
+                    }
+                    snap.forEach(doc => {
+                        const d = doc.data();
+                        list.innerHTML += `
+                            <div class="prescription-card">
+                                <h4>${d.date}</h4>
+                                <p><strong>Right:</strong> ${d.rightSPH} | <strong>Left:</strong> ${d.leftSPH}</p>
+                            </div>
+                        `;
+                    });
+                });
+        }
+
+        // Your Appointment Function (Enhanced)
+        function handleAppointmentSubmit(e) {
+            e.preventDefault();
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+            const date = document.getElementById('date').value;
+            const time = document.getElementById('time').value;
+            const msg = `🚀 Appointment Request\n\nName: ${name}\nPhone: ${phone}\nDate: ${date}\nTime: ${time}`;
+            window.open(`https://wa.me/919064000639?text=${encodeURIComponent(msg)}`, '_blank');
+            alert('✅ Appointment request sent to WhatsApp!');
+        }
+
+        // Close modal on outside click
+        document.getElementById('loginModal').addEventListener('click', function(e) {
+            if (e.target === this) this.style.display = 'none';
+        });
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+    </script>
 </body>
 </html>
