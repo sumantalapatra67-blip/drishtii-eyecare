@@ -5,286 +5,780 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Drishtii Eyecare – Premium Vision for Premium People</title>
 
-  <!-- CSS --><!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Drishtii Eyecare – Premium Vision for Premium People</title>
-
-  <!-- CSS -->
-  <link rel="stylesheet" href="styles.css" />
-
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
-</head>
-
-<body>
-
-<!-- HEADER -->
-<header class="header sticky">
-  <div class="container header-content">
-    <a href="index.html" class="logo">Drishtii Eyecare</a>
-    <nav>
-      <ul class="nav-links">
-        <li><a href="shop.html">Shop</a></li>
-        <li><a href="#featured">Featured</a></li>
-        <li><a href="#appointment">Appointment</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </nav>
-    <a href="https://wa.me/919064000639" target="_blank" class="btn btn-primary">WhatsApp Now</a>
-  </div>
-</header>
-
-<main>
-
-<!-- HERO -->
-<section class="hero-banner container">
-  <h1>Drishtii Eyecare – Premium Vision for Premium People</h1>
-  <p>See Better. Look Better. Live Better.</p>
-  <a href="shop.html" class="btn btn-primary">Shop Now</a>
-</section>
-
-<!-- OFFER -->
-<section class="container offers-banner">
-  <p>🔥 <strong>Premium Eyeglasses @ ₹999</strong> — Frame + Lenses + Eye Checkup</p>
-</section>
-
-<!-- FEATURED -->
-<section id="featured" class="featured-collections container">
-  <h2>Featured Collections</h2>
-  <div class="featured-grid">
-    <div class="product-card">
-      <img src="assets/product-1.jpg">
-      <h3>Classic Black Frame</h3>
-      <p>₹599</p>
-    </div>
-    <div class="product-card">
-      <img src="assets/product1 (2).jpg">
-      <h3>Premium Metal</h3>
-      <p>₹1999</p>
-    </div>
-  </div>
-</section>
-
-<!-- APPOINTMENT -->
-<section id="appointment" class="container">
-  <h2>Book Eye Checkup</h2>
-  <form onsubmit="handleAppointmentSubmit(event)">
-    <input id="name" placeholder="Name" required>
-    <input id="phone" placeholder="Phone" required>
-    <input id="date" type="date" required>
-    <input id="time" type="time" required>
-    <button type="submit">Book on WhatsApp</button>
-  </form>
-</section>
-
-</main>
-
-<!-- FOOTER -->
-<footer id="contact" class="footer">
-  <p>Bethuadahari, West Bengal</p>
-  <p>📞 9064000639</p>
-  <p>© 2025 Drishtii Eyecare</p>
-</footer>
-
-<!-- FLOATING WHATSAPP -->
-<a href="https://wa.me/919064000639" class="floating-whatsapp">💬</a>
-
-<!-- JAVASCRIPT -->
-<script>
-function handleAppointmentSubmit(e) {
-  e.preventDefault();
-  const name = document.getElementById('name').value;
-  const phone = document.getElementById('phone').value;
-  const date = document.getElementById('date').value;
-  const time = document.getElementById('time').value;
+  <!-- Google Fonts (Playfair Display + Cinzel + Montserrat) -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Cinzel:wght@400;700&family=Montserrat:wght@400;600;700;900&display=swap" rel="stylesheet">
   
-  const msg = `New Appointment Request!\n\nName: ${name}\nPhone: ${phone}\nDate: ${date}\nTime: ${time}`;
-  window.open("https://wa.me/919064000639?text=" + encodeURIComponent(msg));
-}
-</script>
-
-</body>
-</html>
-
-  <link rel="stylesheet" href="styles.css" />
-
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
-
-  <!-- 🔥 FIREBASE (CORRECT FOR NORMAL HTML) -->
+  <!-- Bootstrap 5.1 for Navbar/Modal -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+  <!-- Firebase -->
   <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
 
-  <script>
-    const firebaseConfig = {
-      apiKey: "AIzaSyDy8sQ9YGRI3xQoR8HLdoxWvY8E7T654Y4",
-      authDomain: "drishtiiusers.firebaseapp.com",
-      projectId: "drishtiiusers",
-      storageBucket: "drishtiiusers.firebasestorage.app",
-      messagingSenderId: "464279956816",
-      appId: "1:464279956816:web:a0340b39a8b9c6e3ba9055"
-    };
+  <style>
+/* ===========================================
+   LUXURY MOBIRISE-INSPIRED STYLES 
+   =========================================== */
+.luxury-navbar .navbar {
+    background: linear-gradient(135deg, #1a1a1a 0%, #0f0f0f 50%, rgba(212,175,55,0.15) 100%);
+    backdrop-filter: blur(20px) saturate(180%);
+    box-shadow: 0 8px 32px rgba(212,175,55,0.3), 0 0 0 1px rgba(212,175,55,0.1);
+    border-bottom: 1px solid rgba(212,175,55,0.2);
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.320, 1);
+}
+.luxury-navbar .navbar-brand .navbar-caption {
+    font-family: 'Playfair Display', serif !important;
+    font-weight: 700;
+    background: linear-gradient(135deg, #D4AF37 0%, #FDB931 50%, #FFD700 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 0 0 30px rgba(212,175,55,0.5);
+    letter-spacing: 2px;
+    font-size: 1.8rem;
+    transition: all 0.3s ease;
+}
+.navbar-logo-text {
+    margin-left: 0.75rem;
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    background: linear-gradient(135deg, #D4AF37 0%, #FDB931 50%, #FFD700 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: 1.5px;
+    font-size: 1.4rem;
+    display: inline-block;
+    vertical-align: middle;
+}
+.luxury-navbar .nav-link {
+    position: relative;
+    color: #ffffff !important;
+    font-weight: 500;
+    padding: 12px 24px !important;
+    margin: 0 8px;
+    border-radius: 50px;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.95rem;
+}
+.luxury-navbar .nav-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(212,175,55,0.2), transparent);
+    transition: left 0.6s;
+}
+.luxury-navbar .nav-link:hover::before {
+    left: 100%;
+}
+.luxury-navbar .nav-link:hover {
+    color: #D4AF37 !important;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(212,175,55,0.4);
+    background: rgba(212,175,55,0.1) !important;
+    backdrop-filter: blur(10px);
+}
+.luxury-navbar .hamburger span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    margin: 4px 0;
+    background: linear-gradient(135deg, #D4AF37, #FDB931) !important;
+    box-shadow: 0 2px 10px rgba(212,175,55,0.4);
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+.luxury-navbar .btn-primary {
+    background: linear-gradient(135deg, #D4AF37 0%, #FDB931 50%, #E3BE46 100%) !important;
+    border: none !important;
+    box-shadow: 0 8px 25px rgba(212,175,55,0.4) !important;
+    border-radius: 50px !important;
+    padding: 12px 32px !important;
+    font-weight: 600 !important;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease !important;
+    position: relative;
+    overflow: hidden;
+}
+.luxury-navbar .btn-primary:hover {
+    transform: translateY(-2px) scale(1.05) !important;
+    box-shadow: 0 15px 40px rgba(212,175,55,0.6) !important;
+    background: linear-gradient(135deg, #FDB931 0%, #D4AF37 50%, #FFD700 100%) !important;
+}
+.luxury-glow {
+    animation: luxuryPulse 3s ease-in-out infinite alternate;
+}
+@keyframes luxuryPulse {
+    0% { box-shadow: 0 8px 32px rgba(212,175,55,0.3), 0 0 0 1px rgba(212,175,55,0.1); }
+    100% { box-shadow: 0 12px 48px rgba(212,175,55,0.5), 0 0 0 1px rgba(212,175,55,0.2); }
+}
 
-    firebase.initializeApp(firebaseConfig);
-    const auth = firebase.auth();
-    const db = firebase.firestore();
-  </script>
+/* Hero Section - Luxury Style */
+.luxury-hero {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, rgba(10,10,10,0.95) 0%, rgba(0,0,0,0.9) 100%);
+}
+.luxury-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 20% 80%, rgba(212,175,55,0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(253,185,49,0.12) 0%, transparent 50%);
+    z-index: 1;
+    animation: luxuryShine 8s ease-in-out infinite;
+}
+@keyframes luxuryShine {
+    0%, 100% { opacity: 0.8; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.05); }
+}
+.luxury-hero .content-wrapper {
+    position: relative;
+    z-index: 3;
+    animation: fadeInUp 1.2s cubic-bezier(0.23, 1, 0.320, 1);
+}
+@keyframes fadeInUp {
+    0% { opacity: 0; transform: translateY(50px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+.luxury-hero .mbr-tag_1, .luxury-hero .mbr-tag_2 {
+    background: linear-gradient(135deg, #D4AF37 0%, #FDB931 50%, #FFD700 100%) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    background-clip: text !important;
+    font-family: 'Playfair Display', serif !important;
+    font-weight: 600 !important;
+    font-size: 1.4rem !important;
+    text-shadow: 0 0 30px rgba(212,175,55,0.6);
+    padding: 12px 28px !important;
+    border: 2px solid rgba(212,175,55,0.3) !important;
+    border-radius: 50px !important;
+    backdrop-filter: blur(20px) !important;
+    box-shadow: 0 8px 32px rgba(212,175,55,0.3) !important;
+    display: inline-block;
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.320, 1);
+}
+.luxury-hero .mbr-section-title {
+    font-family: 'Playfair Display', serif !important;
+    background: linear-gradient(135deg, #FFFFFF 0%, #F0F0F0 50%, #D4AF37 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 700 !important;
+    font-size: 4.5rem !important;
+    line-height: 1.1 !important;
+    text-shadow: 0 0 60px rgba(212,175,55,0.4);
+    letter-spacing: -2px;
+    margin-bottom: 24px;
+}
+.luxury-hero .mbr-section-subtitle {
+    font-family: 'Cinzel', serif !important;
+    color: rgba(255,255,255,0.95) !important;
+    font-size: 2rem !important;
+    font-weight: 400 !important;
+    margin-bottom: 32px;
+}
+.luxury-hero .mbr-text {
+    color: rgba(255,255,255,0.9) !important;
+    font-size: 1.2rem !important;
+    line-height: 1.8;
+    max-width: 600px;
+    backdrop-filter: blur(10px);
+    padding: 24px;
+    background: rgba(0,0,0,0.3);
+    border: 1px solid rgba(212,175,55,0.2);
+    border-radius: 20px;
+}
+.luxury-hero .btn-primary {
+    background: linear-gradient(135deg, #D4AF37 0%, #FDB931 50%, #FFD700 100%) !important;
+    border: none !important;
+    box-shadow: 0 12px 40px rgba(212,175,55,0.5) !important;
+    border-radius: 50px !important;
+    padding: 18px 48px !important;
+    font-family: 'Montserrat', sans-serif !important;
+    font-weight: 600 !important;
+    font-size: 1.1rem !important;
+    text-transform: uppercase !important;
+    letter-spacing: 2px !important;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.320, 1) !important;
+}
+.luxury-hero .btn-primary:hover {
+    transform: translateY(-4px) scale(1.08) !important;
+    box-shadow: 0 25px 60px rgba(212,175,55,0.7) !important;
+}
+
+/* Featured Products - Luxury Cards */
+.featured-collections {
+    background: linear-gradient(135deg, rgba(26,26,26,0.95), rgba(15,15,15,0.95));
+    padding: 100px 0;
+    position: relative;
+}
+.featured-collections::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(212,175,55,0.5), transparent);
+}
+.product-card {
+    background: rgba(255,255,255,0.05);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(212,175,55,0.2);
+    border-radius: 24px;
+    padding: 2rem;
+    text-align: center;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+    height: 100%;
+}
+.product-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #D4AF37, #FDB931, #D4AF37);
+}
+.product-card:hover {
+    transform: translateY(-20px);
+    box-shadow: 0 40px 80px rgba(212,175,55,0.3);
+    border-color: rgba(212,175,55,0.5);
+}
+.product-card img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 16px;
+    margin-bottom: 1.5rem;
+    filter: drop-shadow(0 10px 30px rgba(0,0,0,0.4));
+    transition: all 0.4s ease;
+}
+.product-card:hover img {
+    transform: scale(1.05);
+    filter: drop-shadow(0 15px 40px rgba(212,175,55,0.3));
+}
+.product-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: #ffffff;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+.product-card p {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 900;
+    background: linear-gradient(135deg, #D4AF37, #FDB931);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Offers Banner - Hormozi Style */
+.offers-banner {
+    background: linear-gradient(135deg, #ff5f6d, #ffc371);
+    box-shadow: 0 0 30px rgba(255, 100, 50, 0.7), 0 0 60px rgba(255, 80, 0, 0.4);
+    position: relative;
+    overflow: hidden;
+    color: #fff;
+    padding: 3rem 2rem;
+    text-align: center;
+    border-radius: 24px;
+    margin: 4rem auto;
+    max-width: 800px;
+    animation: shine 5s linear infinite;
+}
+@keyframes shine {
+    0% { transform: translateX(-200%) rotate(20deg); }
+    100% { transform: translateX(200%) rotate(20deg); }
+}
+.offers-banner::before {
+    content: "⚡ LIMITED TIME ⚡";
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0,0,0,0.9);
+    color: #ffc371;
+    padding: 0.5rem 2rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 900;
+    animation: blink 1s infinite;
+}
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+}
+.pulse-price {
+    font-size: 3rem;
+    font-weight: 900;
+    color: #00ffbd;
+    animation: pulse 1.2s infinite;
+}
+@keyframes pulse {
+    0% { transform: scale(1); text-shadow: 0 0 10px #00ffbd; }
+    50% { transform: scale(1.15); text-shadow: 0 0 25px #00ffbd; }
+    100% { transform: scale(1); text-shadow: 0 0 10px #00ffbd; }
+}
+
+/* Appointment Section */
+.appointment-section {
+    background: linear-gradient(145deg, rgba(26,26,26,0.98), rgba(15,15,15,0.95));
+    padding: 80px 0;
+    border-radius: 32px;
+    margin: 4rem auto;
+    max-width: 1000px;
+    box-shadow: 0 40px 80px rgba(0,0,0,0.5);
+}
+.appointment-form .form-control {
+    background: rgba(255,255,255,0.05) !important;
+    border: 1px solid rgba(212,175,55,0.3) !important;
+    border-radius: 16px !important;
+    color: #ffffff !important;
+    padding: 16px 20px !important;
+    font-size: 1rem;
+    transition: all 0.3s ease !important;
+    backdrop-filter: blur(10px);
+}
+.appointment-form .form-control:focus {
+    background: rgba(255,255,255,0.1) !important;
+    border-color: #D4AF37 !important;
+    box-shadow: 0 0 0 0.25rem rgba(212,175,55,0.2) !important;
+}
+
+/* Footer */
+.footer {
+    background: linear-gradient(135deg, #001f3f, #000);
+    color: white;
+    padding: 4rem 0 2rem;
+    position: relative;
+}
+.footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #D4AF37, #FDB931, #D4AF37);
+}
+
+/* Firebase Login */
+.firebase-login {
+    background: rgba(10,10,10,0.95);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(212,175,55,0.3);
+    border-radius: 24px;
+    padding: 3rem;
+    margin: 2rem auto;
+    max-width: 500px;
+    text-align: center;
+}
+.firebase-login input {
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(212,175,55,0.3);
+    border-radius: 12px;
+    color: white;
+    padding: 1rem;
+    margin: 1rem;
+    width: 80%;
+}
+.firebase-login button {
+    background: linear-gradient(135deg, #D4AF37, #FDB931);
+    border: none;
+    border-radius: 12px;
+    color: #000;
+    padding: 1rem 2rem;
+    font-weight: 700;
+    margin: 0.5rem;
+    cursor: pointer;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .luxury-hero .mbr-section-title { font-size: 3rem !important; }
+    .luxury-hero .mbr-section-subtitle { font-size: 1.6rem !important; }
+    .navbar-logo-text { font-size: 1.2rem; }
+}
+  </style>
 </head>
 
 <body>
 
-<!-- HEADER -->
-<header class="header sticky">
-  <div class="container header-content">
-    <a href="index.html" class="logo">Drishtii Eyecare</a>
-    <nav>
-      <ul class="nav-links">
-        <li><a href="shop.html">Shop</a></li>
-        <li><a href="#featured">Featured</a></li>
-        <li><a href="#appointment">Appointment</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
+<!-- 🔥 LUXURY NAVBAR (Mobirise Style) -->
+<section data-bs-version="5.1" class="menu menu01 guidem5 luxury-navbar luxury-glow" style="position: absolute;">
+    <nav class="navbar navbar-dropdown luxury-navbar">
+        <div class="container">
+            <div class="navbar-brand">
+                <a href="#" style="display: flex; align-items: center;">
+                    <img class="little-radius luxury-logo" src="https://r.mobirisesite.com/2108700/assets/images/photo-1737338849301-4e0ab7e2c-h_mj5qw27p.jpg" alt="Drishtii Eyecare" style="height: 3rem; filter: drop-shadow(0 0 20px rgba(212,175,55,0.5));">
+                    <span class="navbar-logo-text">DRISHTII EYECARE</span>
+                </a>
+            </div>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
+                <div class="hamburger">
+                    <span></span><span></span><span></span><span></span>
+                </div>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav nav-dropdown ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#hero">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="shop.html" target="_blank">Shop 100+ Frames</a></li>
+                    <li class="nav-item"><a class="nav-link" href="https://codepen.io/Suman-Talapatra/pen/OPNeZXQ" target="_blank">AI Face Scan</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#appointment">Book Test</a></li>
+                    <li class="nav-item"><a class="nav-link" href="https://wa.me/919064000639" target="_blank">Live Chat</a></li>
+                </ul>
+                <div class="navbar-buttons ms-3">
+                    <button class="btn btn-primary book-appointment-btn">
+                        <span class="mbri-calendar-check mbr-iconfont mbr-iconfont-btn"></span>
+                        Book Appointment
+                    </button>
+                </div>
+            </div>
+        </div>
     </nav>
-    <a href="https://wa.me/919064000639" target="_blank" class="btn btn-primary">WhatsApp Now</a>
-  </div>
-</header>
-
-<main>
-
-<!-- 🔐 LOGIN / REGISTER -->
-<section style="padding:2rem;background:#f4f4f4;text-align:center;">
-  <h2>Login / Register</h2>
-  <input id="email" placeholder="Email" style="padding:10px;margin:5px;">
-  <input id="password" type="password" placeholder="Password" style="padding:10px;margin:5px;">
-  <br><br>
-  <button onclick="login()">Login</button>
-  <button onclick="register()">Register</button>
 </section>
 
-<!-- 📄 PRESCRIPTIONS -->
-<section id="prescription" style="display:none;padding:2rem;">
-  <h2>My Prescriptions</h2>
-  <div id="prescription-list"></div>
-  <button onclick="addPrescription()">Add Prescription</button>
-</section>
-
-<!-- HERO -->
-<section class="hero-banner container">
-  <h1>Drishtii Eyecare – Premium Vision for Premium People</h1>
-  <p>See Better. Look Better. Live Better.</p>
-  <a href="shop.html" class="btn btn-primary">Shop Now</a>
-</section>
-
-<!-- OFFER -->
-<section class="container offers-banner">
-  <p>🔥 <strong>Premium Eyeglasses @ ₹999</strong> — Frame + Lenses + Eye Checkup</p>
-</section>
-
-<!-- FEATURED -->
-<section id="featured" class="featured-collections container">
-  <h2>Featured Collections</h2>
-  <div class="featured-grid">
-    <div class="product-card">
-      <img src="assets/product-1.jpg">
-      <h3>Classic Black Frame</h3>
-      <p>₹599</p>
+<!-- 🔥 HERO SECTION (Mobirise Luxury Style) -->
+<section id="hero" class="header02 guidem5 luxury-hero" style="padding-top: 12rem; padding-bottom: 0;">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-lg-8">
+                <div class="content-wrapper">
+                    <div class="tags-wrapper">
+                        <p class="mbr-tag_1">Vision</p>
+                        <p class="mbr-tag_2">Luxury</p>
+                    </div>
+                    <div class="title-wrapper">
+                        <h2 class="mbr-section-title mbr-fonts-style">
+                            Pay Once.<br>&nbsp;See Better for Years.&nbsp;
+                        </h2>
+                        <h3 class="mbr-section-subtitle mbr-fonts-style">Craft Your Signature Look</h3>
+                    </div>
+                    <div class="text-wrapper">
+                        <p class="mbr-text mbr-fonts-style">
+                            Discover premium eyewear that defines your vision. Experience luxury frames, AI-powered face scanning, and personalized styling at Drishtii Eyecare.
+                        </p>
+                    </div>
+                    <div class="mbr-section-btn">
+                        <a class="btn btn-primary" href="shop.html" target="_blank">
+                            Explore 100+ Frames
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-lg-4">
+                <div class="image-wrapper">
+                    <img src="https://r.mobirisesite.com/2108700/assets/images/photo-1644469709847-454ef12d5144.jpeg" alt="Premium Eyewear Collection" class="img-fluid" style="border-radius: 30px; box-shadow: 0 40px 120px rgba(0,0,0,0.6), 0 0 60px rgba(212,175,55,0.3); border: 3px solid rgba(212,175,55,0.4); max-height: 500px; width: 100%; object-fit: cover;">
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="product-card">
-      <img src="assets/product1 (2).jpg">
-      <h3>Premium Metal</h3>
-      <p>₹1999</p>
+</section>
+
+<!-- 🔥 HORMOZI OFFER BANNER -->
+<section class="container">
+    <div class="offers-banner">
+        <div style="position: relative; z-index: 2;">
+            <span class="offer-tag">🔥 TODAY ONLY 🔥</span>
+            <h2>Premium Eyeglasses @ <span class="pulse-price">₹999</span></h2>
+            <p>Frame + Lenses + Free Eye Checkup</p>
+            <button class="glow-btn" onclick="window.open('https://wa.me/919064000639?text=I want the ₹999 offer!','_blank')">Claim Offer Now</button>
+        </div>
     </div>
-  </div>
 </section>
 
-<!-- APPOINTMENT -->
-<section id="appointment" class="container">
-  <h2>Book Eye Checkup</h2>
-  <form onsubmit="handleAppointmentSubmit(event)">
-    <input id="name" placeholder="Name" required>
-    <input id="phone" placeholder="Phone" required>
-    <input id="date" type="date" required>
-    <input id="time" type="time" required>
-    <button type="submit">Book on WhatsApp</button>
-  </form>
+<!-- 🔥 FEATURED COLLECTIONS -->
+<section class="featured-collections container">
+    <h2 class="text-center mb-5" style="font-family: 'Playfair Display', serif; font-size: 3rem; background: linear-gradient(135deg, #D4AF37, #FDB931); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 700;">
+        Featured Collections
+    </h2>
+    <div class="row g-4">
+        <div class="col-lg-4 col-md-6">
+            <div class="product-card h-100">
+                <img src="assets/product-1.jpg" alt="Classic Black Frame">
+                <h3>Classic Black Frame</h3>
+                <p>₹599</p>
+                <a href="shop.html" class="btn btn-primary w-100">View Details</a>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+            <div class="product-card h-100">
+                <img src="assets/product1 (2).jpg" alt="Premium Metal">
+                <h3>Premium Metal</h3>
+                <p>₹1999</p>
+                <a href="shop.html" class="btn btn-primary w-100">View Details</a>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+            <div class="product-card h-100">
+                <img src="assets/product1 (1).jpg" alt="Designer Choice">
+                <h3>Designer Choice</h3>
+                <p>₹1499</p>
+                <a href="shop.html" class="btn btn-primary w-100">View Details</a>
+            </div>
+        </div>
+    </div>
 </section>
 
-</main>
+<!-- 🔥 FIREBASE LOGIN/REGISTER -->
+<section class="firebase-login container">
+    <h2 style="color: #D4AF37; margin-bottom: 2rem;">Login / Register</h2>
+    <input id="email" placeholder="Email" type="email">
+    <input id="password" type="password" placeholder="Password">
+    <br>
+    <button onclick="login()" class="btn btn-primary mt-3">Login</button>
+    <button onclick="register()" class="btn btn-primary mt-3">Register</button>
+</section>
 
-<!-- FOOTER -->
+<section id="prescription" style="display:none; padding:2rem;" class="container">
+    <h2 style="color: #D4AF37;">My Prescriptions</h2>
+    <div id="prescription-list" class="mt-4"></div>
+    <button onclick="addPrescription()" class="btn btn-primary mt-3">Add Prescription</button>
+</section>
+
+<!-- 🔥 APPOINTMENT SECTION -->
+<section id="appointment" class="appointment-section container">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <h2 class="text-center mb-5" style="font-family: 'Playfair Display', serif; font-size: 2.5rem; color: #D4AF37;">
+                Book Your Free Eye Checkup
+            </h2>
+            <form id="appointmentForm" class="appointment-form">
+                <div class="row">
+                    <div class="col-md-6 mb-4">
+                        <input type="text" class="form-control" id="name2" name="name" placeholder="Full Name" required>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <input type="tel" class="form-control" id="phone2" name="phone" placeholder="Phone Number" required>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <input type="date" class="form-control" id="date2" name="date" required>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <input type="time" class="form-control" id="time2" name="time" required>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary w-100 py-3" style="font-size: 1.2rem; font-weight: 700;">
+                    📅 Book FREE Appointment on WhatsApp
+                </button>
+            </form>
+        </div>
+    </div>
+</section>
+
+<!-- 🔥 LUXURY FOOTER -->
 <footer id="contact" class="footer">
-  <p>Bethuadahari, West Bengal</p>
-  <p>📞 9064000639</p>
-  <p>© 2025 Drishtii Eyecare</p>
-</footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h3>Drishtii Eyecare</h3>
+                <p>Bethuadahari, West Bengal 741126</p>
+                <p>📞 <a href="tel:+919064000639" style="color: #D4AF37;">9064000639</a></p>
+            </div>
+            <div class="col-md-6 text-md-end">
+                <h3>Quick Links</h3>
+                <p><a href="shop.html" style="color: #D4AF37;">Shop Frames</a> | <a href="#appointment" style="color: #D4AF37;">Book Test</a></p>
+                <div class="mt-3">
+                    <a href="https://wa.me/919064000639" class="btn btn-primary me-2">WhatsApp</a>
+                    <a href="https://www.instagram.com/drishtiieyecare/" class="btn btn-primary">Instagram</a>
+                </div>
+            </div>
+        </div>
+        <hr style="border-color: rgba(212,175,55,0.3);">
+        <div class="text-center mt-4">
+            <p>© 2025 Drishtii Eyecare – Premium Vision for Premium People</p>
+        </div>
+    </div>
+</div>
 
-<!-- FLOATING WHATSAPP -->
-<a href="https://wa.me/919064000639" class="floating-whatsapp">💬</a>
+<!-- 💬 FLOATING WHATSAPP (Github Style) -->
+<a href="https://wa.me/919064000639" class="floating-whatsapp" style="position: fixed; bottom: 30px; right: 30px; background: linear-gradient(135deg, #25d366, #128c43); color: white; font-size: 2.5rem; width: 70px; height: 70px; display: flex; align-items: center; justify-content: center; border-radius: 50%; box-shadow: 0 10px 30px rgba(37,211,102,0.8); z-index: 9999; text-decoration: none;">💬</a>
 
-<!-- 🔧 JAVASCRIPT -->
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- 🔥 ALL WORKING JAVASCRIPT (Github + Mobirise Combined) -->
 <script>
 let currentUser = null;
+let slideIndex = 0;
 
+// Firebase Config
+const firebaseConfig = {
+    apiKey: "AIzaSyDy8sQ9YGRI3xQoR8HLdoxWvY8E7T654Y4",
+    authDomain: "drishtiiusers.firebaseapp.com",
+    projectId: "drishtiiusers",
+    storageBucket: "drishtiiusers.firebasestorage.app",
+    messagingSenderId: "464279956816",
+    appId: "1:464279956816:web:a0340b39a8b9c6e3ba9055"
+};
+firebase.initializeApp(firebaseConfig);
+const auth = firebase.auth();
+const db = firebase.firestore();
+
+// Auth State
 auth.onAuthStateChanged(user => {
-  currentUser = user;
-  if (user) {
-    document.getElementById("prescription").style.display = "block";
-    loadPrescriptions();
-  }
+    currentUser = user;
+    if (user) {
+        document.getElementById("prescription").style.display = "block";
+        loadPrescriptions();
+    }
 });
 
+// Login/Register Functions
 function login() {
-  auth.signInWithEmailAndPassword(email.value, password.value)
-    .catch(alert);
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    auth.signInWithEmailAndPassword(email, password).catch(err => alert(err.message));
 }
-
 function register() {
-  auth.createUserWithEmailAndPassword(email.value, password.value)
-    .catch(alert);
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    auth.createUserWithEmailAndPassword(email, password).catch(err => alert(err.message));
 }
-
 function addPrescription() {
-  const rightSPH = prompt("Right SPH");
-  const leftSPH = prompt("Left SPH");
-
-  db.collection("prescriptions").add({
-    userId: currentUser.uid,
-    rightSPH,
-    leftSPH,
-    date: new Date().toDateString()
-  }).then(loadPrescriptions);
+    const rightSPH = prompt("Right SPH");
+    const leftSPH = prompt("Left SPH");
+    db.collection("prescriptions").add({
+        userId: currentUser.uid,
+        rightSPH, leftSPH,
+        date: new Date().toDateString()
+    }).then(loadPrescriptions);
+}
+function loadPrescriptions() {
+    db.collection("prescriptions")
+        .where("userId", "==", currentUser.uid)
+        .get()
+        .then(snap => {
+            const list = document.getElementById('prescription-list');
+            list.innerHTML = "";
+            snap.forEach(doc => {
+                const d = doc.data();
+                list.innerHTML += `
+                    <div class="alert alert-info mt-2">
+                        <strong>${d.date}</strong><br>
+                        Right: ${d.rightSPH} | Left: ${d.leftSPH}
+                    </div>
+                `;
+            });
+        });
 }
 
-function loadPrescriptions() {
-  db.collection("prescriptions")
-    .where("userId","==",currentUser.uid)
-    .get()
-    .then(snap => {
-      prescription-list.innerHTML = "";
-      snap.forEach(doc => {
-        const d = doc.data();
-        prescription-list.innerHTML += `
-          <p>
-            ${d.date}<br>
-            Right: ${d.rightSPH} | Left: ${d.leftSPH}
-          </p>
-        `;
-      });
+// Appointment Modal + Form (Mobirise Style)
+document.addEventListener('DOMContentLoaded', function () {
+    const openBtns = document.querySelectorAll('.book-appointment-btn');
+    const appointmentForm = document.getElementById('appointmentForm');
+    const whatsappNumber = '919064000639';
+
+    // Multiple appointment forms
+    const forms = [appointmentForm, document.querySelector('#appointmentForm')];
+    
+    forms.forEach(form => {
+        if (form) {
+            form.addEventListener('submit', function (e) {
+                e.preventDefault();
+                const name = document.getElementById(form.id === 'appointmentForm' ? 'name2' : 'name')?.value || 'Not provided';
+                const phone = document.getElementById(form.id === 'appointmentForm' ? 'phone2' : 'phone')?.value || 'Not provided';
+                const date = document.getElementById(form.id === 'appointmentForm' ? 'date2' : 'date')?.value || 'Not selected';
+                const time = document.getElementById(form.id === 'appointmentForm' ? 'time2' : 'time')?.value || 'Not selected';
+                
+                const message = encodeURIComponent(
+                    `🩺 *New Appointment Request* 🩺%0A%0A` +
+                    `👤 *Name:* ${name}%0A` +
+                    `📱 *Phone:* ${phone}%0A` +
+                    `📅 *Date:* ${date}%0A` +
+                    `🕒 *Time:* ${time}%0A%0A` +
+                    `Drishtii Eyecare | Bethuadahari`
+                );
+                window.open(`https://wa.me/${whatsappNumber}?text=${message}`, '_blank');
+                form.reset();
+            });
+        }
+    });
+
+    // Navbar appointment buttons
+    openBtns.forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            // Focus first form
+            document.getElementById('appointmentForm')?.scrollIntoView({ behavior: 'smooth' });
+        });
+    });
+});
+
+// Hero Slider (Github Style) - if sliders exist
+function showSlides() {
+    const slides = document.getElementsByClassName("slider");
+    if (slides.length === 0) return;
+    
+    for (let i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+    }
+    slideIndex++;
+    if (slideIndex > slides.length) { slideIndex = 1; }
+    slides[slideIndex - 1].style.display = "block";
+    setTimeout(showSlides, 4000);
+}
+if (document.querySelector(".hero-sliders, .slider")) {
+    showSlides();
+}
+
+// Product Filtering (Github Style) - Works on shop.html too
+const filters = { price: 'all', gender: 'all', shape: 'all', material: 'all' };
+function filterProducts() {
+    const cards = document.querySelectorAll(".product-card");
+    cards.forEach(card => {
+        const price = parseInt(card.dataset.price || 0);
+        const gender = card.dataset.gender || '';
+        const shape = card.dataset.shape || '';
+        const material = card.dataset.material || '';
+
+        let priceMatch = false;
+        switch (filters.price) {
+            case 'low': priceMatch = price < 2000; break;
+            case 'med': priceMatch = price >= 2000 && price <= 4000; break;
+            case 'high': priceMatch = price > 4000; break;
+            default: priceMatch = true;
+        }
+
+        const genderMatch = filters.gender === 'all' || gender === filters.gender;
+        const shapeMatch = filters.shape === 'all' || shape === filters.shape;
+        const materialMatch = filters.material === 'all' || material === filters.material;
+
+        card.style.display = (priceMatch && genderMatch && shapeMatch && materialMatch) ? 'block' : 'none';
     });
 }
 
-function handleAppointmentSubmit(e) {
-  e.preventDefault();
-  const msg = `Appointment Request`;
-  window.open("https://wa.me/919064000639?text=" + msg);
-}
+// Attach filter listeners if elements exist
+['filter-price', 'filter-gender', 'filter-shape', 'filter-material'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) {
+        el.addEventListener('change', e => {
+            filters[id.replace('filter-', '')] = e.target.value;
+            filterProducts();
+        });
+    }
+});
 </script>
 
 </body>
-</html> 
-
-
+</html>
