@@ -21,6 +21,276 @@
    LUXURY MOBIRISE-INSPIRED STYLES 
    =========================================== */
 .luxury-navbar .navbar {
+  <section data-bs-version="5.1" class="clients01 mbr-embla guidem5 luxury-testimonials" group="People" plugins="embla" mbr-class="{
+    'mbr-fullscreen': fullScreen,
+    'mbr-parallax-background': bg.parallax}">
+
+    <mbr-parameters>
+        <header>Size</header>
+        <input type="checkbox" title="Full Width" name="fullWidth">
+        <input type="range" inline="" title="Top" name="paddingTop" min="0" max="10" step="1" value="4">
+        <input type="range" inline="" title="Bottom" name="paddingBottom" min="0" max="10" step="1" value="6">
+        <input type="checkbox" title="Reverse" name="reverseContent">
+        <header>Show/Hide</header>
+        <input type="checkbox" title="Title" name="showTitle" checked="">
+        <header>Carousel</header>
+        <input type="checkbox" title="Autoplay" name="autoplay" checked="">
+        <input type="range" title="Interval" name="interval" min="1" max="10" value="3" step="1" condition="autoplay">
+        <input type="checkbox" title="Loop" name="loop" checked="">
+        <input type="checkbox" title="Draggable" name="draggable" checked="">
+        <input type="checkbox" title="Shadow" name="shadow" checked="">
+        <input type="checkbox" name="arrows" title="Arrows" checked="">
+        <input type="checkbox" name="arrowsMobile" title="Mobile Arrows" condition="arrows" checked="">
+        <input type="color" name="arrowsColor" title="Arrows Color" value="#FFFFFF" condition="arrows">
+        <input type="color" name="arrowsBg" title="Arrows BG" value="#FFD700" condition="arrows">
+        <header>Cards</header>
+        <input type="range" name="gap" title="Gap" min="0" max="40" step="10" value="30">
+        <input type="checkbox" title="Invert" name="showInvert" checked="">
+        <header>Background</header>
+        <fieldset type="background" name="bg" parallax="">
+            <input type="image" title="Image" value="https://images.unsplash.com/photo-1516979187457-637a1f8ba5c0?w=1920&fit=crop">
+            <input type="color" title="Color" value="#000000">
+        </fieldset>
+        <input type="checkbox" title="Overlay" name="overlay" condition="bg.type !== 'color'" checked="">
+        <input type="color" title="Overlay Color" name="overlayColor" value="#000000" condition="overlay && bg.type == 'image'">
+        <input type="range" inline="" title="Opacity" name="overlayOpacity" min="0" max="1" step="0.1" value="0.9" condition="overlay && bg.type == 'image'">
+    </mbr-parameters>
+
+    <style>
+        .luxury-testimonials .mbr-section-title {
+            background: linear-gradient(135deg, #FFD700 0%, #FF6B35 50%, #FFD700 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 30px rgba(255,215,0,0.6);
+            animation: glow 2s ease-in-out infinite alternate;
+            font-size: 3rem !important;
+        }
+        .luxury-testimonials .embla__slide {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .luxury-testimonials .item-wrapper {
+            background: rgba(10,10,10,0.95);
+            backdrop-filter: blur(25px);
+            border: 1px solid rgba(255,215,0,0.3);
+            border-radius: 24px;
+            padding: 3rem 2rem;
+            box-shadow: 
+                0 25px 50px -12px rgba(0,0,0,0.8),
+                0 0 0 1px rgba(255,215,0,0.2),
+                inset 0 1px 0 rgba(255,255,255,0.1);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transform: scale(0.95);
+            width: 260px;
+            height: 200px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+        .luxury-testimonials .embla__slide:hover .item-wrapper {
+            transform: scale(1.05) translateY(-15px);
+            box-shadow: 
+                0 50px 100px -20px rgba(255,107,53,0.4),
+                0 0 60px rgba(255,215,0,0.8),
+                inset 0 1px 0 rgba(255,255,255,0.25);
+            border-color: rgba(255,215,0,0.9);
+        }
+        .luxury-testimonials .customer-name {
+            background: linear-gradient(135deg, #FFD700 0%, #FF6B35 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 1.6rem !important;
+            font-weight: 800 !important;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 0 20px rgba(255,215,0,0.5);
+            animation: nameGlow 2s ease-in-out infinite alternate;
+        }
+        .luxury-testimonials .customer-location {
+            color: rgba(255,255,255,0.8);
+            font-size: 0.95rem;
+            font-weight: 500;
+            margin-top: 0.5rem;
+        }
+        .luxury-testimonials .testimonial-quote {
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 3rem;
+            color: rgba(255,215,0,0.3);
+            z-index: 1;
+        }
+        .luxury-testimonials .item-wrapper::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 30%, rgba(255,215,0,0.15) 0%, transparent 50%);
+            z-index: 0;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        .luxury-testimonials .embla__slide:hover .item-wrapper::before {
+            opacity: 1;
+        }
+        .luxury-testimonials .embla__button {
+            background: linear-gradient(135deg, #FFD700 0%, #FF6B35 100%);
+            border: none;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 
+                0 15px 35px rgba(255,215,0,0.5),
+                inset 0 1px 0 rgba(255,255,255,0.3);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(20px);
+        }
+        .luxury-testimonials .embla__button:hover {
+            transform: scale(1.1);
+            box-shadow: 
+                0 25px 50px rgba(255,215,0,0.7),
+                inset 0 1px 0 rgba(255,255,255,0.4);
+        }
+        .luxury-testimonials .embla__button span.mbr-iconfont {
+            font-size: 1.4rem;
+            color: #000 !important;
+            font-weight: bold;
+        }
+        @keyframes glow {
+            0% { filter: drop-shadow(0 0 15px rgba(255,215,0,0.6)); }
+            100% { filter: drop-shadow(0 0 35px rgba(255,215,0,0.9)); }
+        }
+        @keyframes nameGlow {
+            0% { filter: drop-shadow(0 0 10px rgba(255,215,0,0.5)); }
+            100% { filter: drop-shadow(0 0 25px rgba(255,215,0,0.8)); }
+        }
+        @media (max-width: 768px) {
+            .luxury-testimonials .item-wrapper {
+                width: 220px;
+                height: 180px;
+                padding: 2rem 1.5rem;
+            }
+            .luxury-testimonials .customer-name {
+                font-size: 1.4rem !important;
+            }
+            .luxury-testimonials .mbr-section-title {
+                font-size: 2.2rem !important;
+            }
+        }
+    </style>
+
+    <div class="mbr-overlay" opacity="{{overlayOpacity}}" bg-color="{{overlayColor}}" mbr-if="overlay && bg.type !== 'color'"></div>
+
+    <div mbr-class="{'container': !fullWidth, 'container-fluid': fullWidth}">
+        <div class="row">
+            <div class="col-12">
+                <div class="content-wrapper" mbr-class="{'flex-row-reverse' : reverseContent}">
+                    <div class="title-wrapper" mbr-if="showTitle">
+                        <h2 class="mbr-section-title mbr-fonts-style" mbr-theme-style="display-2" data-app-selector=".mbr-section-title, .title-wrapper" style="font-size: 3rem;">
+                            Trusted By 5000+ Happy Customers
+                        </h2>
+                        <p style="color: rgba(255,255,255,0.8); font-size: 1.2rem; margin-top: 1rem;">Real people from Bethuadahari & Nadia district</p>
+                    </div>
+                    <div class="embla" data-loop="{{loop}}" data-auto-play="{{autoplay}}" data-auto-play-interval="{{interval}}" data-draggable="{{draggable}}" data-skip-snaps="true" data-align="center" data-contain-scroll="trimSnaps">
+                        <div class="embla__viewport" mbr-class="{'container': !fullWidth, 'container-fluid': fullWidth}">
+                            <div class="embla__container">
+                                
+                                <div class="embla__slide slider-image item" mbr-style="{'margin-left': gap + 'px', 'margin-right': gap + 'px'}">
+                                    <div class="slide-content">
+                                        <div class="item-wrapper">
+                                            <div class="testimonial-quote">❝</div>
+                                            <div style="position: relative; z-index: 2;">
+                                                <div class="customer-name">Priya Sharma</div>
+                                                <div class="customer-location">Bethuadahari</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="embla__slide slider-image item" mbr-style="{'margin-left': gap + 'px', 'margin-right': gap + 'px'}">
+                                    <div class="slide-content">
+                                        <div class="item-wrapper">
+                                            <div class="testimonial-quote">❝</div>
+                                            <div style="position: relative; z-index: 2;">
+                                                <div class="customer-name">Rahul Banerjee</div>
+                                                <div class="customer-location">Nabadwip</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="embla__slide slider-image item" mbr-style="{'margin-left': gap + 'px', 'margin-right': gap + 'px'}">
+                                    <div class="slide-content">
+                                        <div class="item-wrapper">
+                                            <div class="testimonial-quote">❝</div>
+                                            <div style="position: relative; z-index: 2;">
+                                                <div class="customer-name">Anita Das</div>
+                                                <div class="customer-location">Krishnanagar</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="embla__slide slider-image item" mbr-style="{'margin-left': gap + 'px', 'margin-right': gap + 'px'}">
+                                    <div class="slide-content">
+                                        <div class="item-wrapper">
+                                            <div class="testimonial-quote">❝</div>
+                                            <div style="position: relative; z-index: 2;">
+                                                <div class="customer-name">Vikash Roy</div>
+                                                <div class="customer-location">Bethuadahari</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="embla__slide slider-image item" mbr-style="{'margin-left': gap + 'px', 'margin-right': gap + 'px'}">
+                                    <div class="slide-content">
+                                        <div class="item-wrapper">
+                                            <div class="testimonial-quote">❝</div>
+                                            <div style="position: relative; z-index: 2;">
+                                                <div class="customer-name">Sangeeta Mondal</div>
+                                                <div class="customer-location">Chapra</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="embla__slide slider-image item" mbr-style="{'margin-left': gap + 'px', 'margin-right': gap + 'px'}">
+                                    <div class="slide-content">
+                                        <div class="item-wrapper">
+                                            <div class="testimonial-quote">❝</div>
+                                            <div style="position: relative; z-index: 2;">
+                                                <div class="customer-name">Arjun Ghosh</div>
+                                                <div class="customer-location">Nabadwip</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <button class="embla__button embla__button--prev">
+                            <span class="mobi-mbri mobi-mbri-left mbr-iconfont" aria-hidden="true"></span>
+                            <span class="sr-only visually-hidden visually-hidden visually-hidden">Previous</span>
+                        </button>
+                        <button class="embla__button embla__button--next">
+                            <span class="mobi-mbri mobi-mbri-right mbr-iconfont" aria-hidden="true"></span>
+                            <span class="sr-only visually-hidden visually-hidden visually-hidden">Next</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
     background: linear-gradient(135deg, #1a1a1a 0%, #0f0f0f 50%, rgba(212,175,55,0.15) 100%);
     backdrop-filter: blur(20px) saturate(180%);
     box-shadow: 0 8px 32px rgba(212,175,55,0.3), 0 0 0 1px rgba(212,175,55,0.1);
@@ -782,3 +1052,4 @@ function filterProducts() {
 
 </body>
 </html>
+
