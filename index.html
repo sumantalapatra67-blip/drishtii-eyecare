@@ -5,7 +5,110 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Drishtii Eyecare – Premium Vision for Premium People</title>
 
+  <!-- CSS --><!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Drishtii Eyecare – Premium Vision for Premium People</title>
+
   <!-- CSS -->
+  <link rel="stylesheet" href="styles.css" />
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header class="header sticky">
+  <div class="container header-content">
+    <a href="index.html" class="logo">Drishtii Eyecare</a>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="shop.html">Shop</a></li>
+        <li><a href="#featured">Featured</a></li>
+        <li><a href="#appointment">Appointment</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+    <a href="https://wa.me/919064000639" target="_blank" class="btn btn-primary">WhatsApp Now</a>
+  </div>
+</header>
+
+<main>
+
+<!-- HERO -->
+<section class="hero-banner container">
+  <h1>Drishtii Eyecare – Premium Vision for Premium People</h1>
+  <p>See Better. Look Better. Live Better.</p>
+  <a href="shop.html" class="btn btn-primary">Shop Now</a>
+</section>
+
+<!-- OFFER -->
+<section class="container offers-banner">
+  <p>🔥 <strong>Premium Eyeglasses @ ₹999</strong> — Frame + Lenses + Eye Checkup</p>
+</section>
+
+<!-- FEATURED -->
+<section id="featured" class="featured-collections container">
+  <h2>Featured Collections</h2>
+  <div class="featured-grid">
+    <div class="product-card">
+      <img src="assets/product-1.jpg">
+      <h3>Classic Black Frame</h3>
+      <p>₹599</p>
+    </div>
+    <div class="product-card">
+      <img src="assets/product1 (2).jpg">
+      <h3>Premium Metal</h3>
+      <p>₹1999</p>
+    </div>
+  </div>
+</section>
+
+<!-- APPOINTMENT -->
+<section id="appointment" class="container">
+  <h2>Book Eye Checkup</h2>
+  <form onsubmit="handleAppointmentSubmit(event)">
+    <input id="name" placeholder="Name" required>
+    <input id="phone" placeholder="Phone" required>
+    <input id="date" type="date" required>
+    <input id="time" type="time" required>
+    <button type="submit">Book on WhatsApp</button>
+  </form>
+</section>
+
+</main>
+
+<!-- FOOTER -->
+<footer id="contact" class="footer">
+  <p>Bethuadahari, West Bengal</p>
+  <p>📞 9064000639</p>
+  <p>© 2025 Drishtii Eyecare</p>
+</footer>
+
+<!-- FLOATING WHATSAPP -->
+<a href="https://wa.me/919064000639" class="floating-whatsapp">💬</a>
+
+<!-- JAVASCRIPT -->
+<script>
+function handleAppointmentSubmit(e) {
+  e.preventDefault();
+  const name = document.getElementById('name').value;
+  const phone = document.getElementById('phone').value;
+  const date = document.getElementById('date').value;
+  const time = document.getElementById('time').value;
+  
+  const msg = `New Appointment Request!\n\nName: ${name}\nPhone: ${phone}\nDate: ${date}\nTime: ${time}`;
+  window.open("https://wa.me/919064000639?text=" + encodeURIComponent(msg));
+}
+</script>
+
+</body>
+</html>
+
   <link rel="stylesheet" href="styles.css" />
 
   <!-- Google Fonts -->
@@ -183,4 +286,5 @@ function handleAppointmentSubmit(e) {
 
 </body>
 </html> 
+
 
